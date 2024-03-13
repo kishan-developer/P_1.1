@@ -1,0 +1,189 @@
+.nav_row {
+    
+    height: 52px;
+    line-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-bottom: 1px solid gray;
+    /* background-color:red; */
+    position:sticky;
+    top: 0;
+    margin-top: 5px;
+    /* background-color: rgb(216, 105, 105); */
+}
+
+.main_nav_row {
+    width: 80%;
+    height: 52px;
+    line-height: 52px;
+    display: flex;
+}
+
+.logo {
+    width: 15%;
+    padding-top: 12px;
+    padding-left: 5px;
+    /* background-color: blueviolet; */
+}
+
+.left_ul {
+    display: flex;
+    width: 42%;
+}
+
+.right_ul {
+    width: 42%;
+    display: flex;
+    height: 52px;
+    line-height: 52px;
+    gap: 6px;
+}
+
+.nav_item_right {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    /* gap: 20px; */
+}
+
+.nav_item_right {
+    height: 42px;
+    line-height: 42px;
+    padding: 0 2px;
+    font-size: 20px;
+    margin-right: 0px;
+
+}
+
+.search_span {
+    height: 42px;
+    width: 320px;
+}
+
+.span-right {
+
+    margin-left: 18px;
+    width: 130px;
+    height: 52px;
+    line-height: 52px;
+    /* padding-top: 8px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.menubutton {
+    visibility: hidden;
+}
+
+/* @media screen and (max-width:550px) {
+    .main_nav_row {
+        width: 100%;
+        display: none;
+        margin-top: 20px;
+        position: absolute;
+    }
+
+    .left_ul {
+        display: none;
+        height: 300px;
+    }
+
+    .nav_items {
+        background-color: blue;
+        display: none;
+        height: 300px;
+    }
+
+    .right_ul {
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 1px;
+
+    }
+
+    .navbar-links{
+        background-color: yellow;
+
+    }
+   
+} */
+
+.navbar-links.active {
+    display: none;
+}
+
+@media screen and (max-width:990px) {
+    .search_span {
+        background-color: red;
+        visibility: hidden;
+    }
+
+    .line {
+        visibility: hidden;
+    }
+
+    .left_ul {
+        visibility: hidden;
+    }
+
+    .logo {
+        visibility: hidden;
+    }
+
+    .menubutton {
+        visibility: visible;
+    }
+
+    .nav_row {
+        max-width: 100%;
+    }
+
+    .span-right {
+        height: 52px;
+        line-height: 52px;
+        display: flex;
+        position: absolute;
+        top: -1px;
+        right: 5px;
+        /* background-color: rgb(121, 51, 51); */
+    }
+
+    .navbar-links.active {
+        /* display: block; */
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 270px;
+        height: 100%;
+        background-color: rgb(238, 238, 238);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar-links .user_Name {
+        padding: 1px 20px;
+        height: 49.2px;
+    }
+
+    .MenuListOption{
+        /* background-color: yellow; */
+        display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+        padding: 1px 20px;
+        height: 48px;
+        line-height: 48px;
+        width: 100%;
+        font-size: small;
+        cursor: pointer;
+    }
+
+
+}
+
+@media screen and (min-width:991px) {}
