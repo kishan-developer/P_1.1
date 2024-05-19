@@ -14,10 +14,11 @@ function Home() {
   
 
   return (
-    <div className='w-full h-fit block overflow-hidden'>
+    <div className='home w-full h-fit block overflow-hidden '>
       
-      <div className="crousel w-full lg:h-[550px] h-fit flex gap-3 overflow-hidden mb-5">
-        <TopSection />
+      <div className=" w-full lg:h-[550px] h-fit  gap-3 flex justify-center  mb-5">
+        <TopSection/>
+        {/* <Carousel/> */}
       </div>
 
       <div className="flex gap-3 w-full h-[260px] text-center text-black text-sm lg:px-[200px]">

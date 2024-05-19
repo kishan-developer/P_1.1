@@ -12,15 +12,16 @@ import 'swiper/css/scrollbar';
 
 function TopSection() {
     return (
-        <div className='w-full lg:h-[550px] h-fit flex gap-3 overflow-hidden '>
+        <div className='w-full lg:h-[550px] h-fit gap-3 '>
             <Swiper
+                className='py-5'
                 // install Swiper modules
                 modules={[Navigation, Pagination, Scrollbar]}
                 spaceBetween={20}
                 slidesPerView={3}
                 navigation
                 // pagination={{ clickable: true }}
-                // scrollbar={{ draggable: true }}
+                scrollbar={{ draggable: true }}
                 // onSwiper={(swiper) => console.log(swiper)}
                 // onSlideChange={() => console.log('slide change')}
             >
@@ -44,6 +45,20 @@ function TopSection() {
                         src="https://images.bewakoof.com/uploads/grid/app/SummerPalooza-1x1-SPACE-men-1708928166.jpg"
                         alt="image 1"
                         className="h-full "
+                    />
+                </SwiperSlide>
+                <SwiperSlide  >
+                    <img
+                        src="https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif"
+                        alt="image 1"
+                        className="h-full"
+                    />
+                </SwiperSlide>
+                <SwiperSlide >
+                    <img
+                        src="https://images.bewakoof.com/uploads/grid/app/Cargo-Joggers-Common-1x1-Banner-1709215562.jpg"
+                        alt="image 1"
+                        className="h-full  "
                     />
                 </SwiperSlide>
                 <SwiperSlide >

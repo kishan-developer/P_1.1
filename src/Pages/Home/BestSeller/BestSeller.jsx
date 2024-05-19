@@ -13,7 +13,7 @@ import { useThemeContextValue } from '../../../Utils/context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 
 function BestSeller() {
-    const { _, dispatch, productID, setproductID } = useThemeContextValue();
+    const { _, dispatch, productID, setproductID,setLodding } = useThemeContextValue();
     const [imgData, setImageData] = useState([]);
     const navigate = useNavigate();
     const ref = useRef(null);
@@ -37,7 +37,7 @@ function BestSeller() {
             // setData((prevProducts) => [...prevProducts, ...result.data]); // Concatenate new data
             setLodding(false)
         } catch (error) {
-            setLodding(false)
+            // setLodding(false)
             console.log(error);
         }
     }

@@ -6,6 +6,13 @@
     font-family: "Montserrat", sans-serif;
 }
 
+::selection {
+    background-color: #fdd835;
+}
+/* body{
+    position:relative;
+} */
+
 img:hover{
     cursor:pointer;
 }
@@ -53,3 +60,17 @@ img:hover{
 /* p {
     margin-top: 20px;
 } */
+
+
+/* man navbar dropdown */
+.dropIndex{
+    z-index: 1;
+}
+
+.index{
+    position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+    
+}

@@ -1,58 +1,160 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense, useCallback } from 'react';
 import './Cart.css';
 import { useThemeContextValue } from '../../Utils/context/ThemeContext';
 import { FaCarSide } from "react-icons/fa";
 import { FaAnglesRight } from "react-icons/fa6";
-import CheckoutProduct from './Checkout/CheckoutProduct';
-import MyWishlist from './MyWishlist/MyWishlist';
-import { useNavigate } from 'react-router-dom';
-import AddressForm from './AddressForm';
+// import CheckoutProduct from './Checkout/CheckoutProduct';
+// import MyWishlist from './MyWishlist/MyWishlist';
+import { Link, useNavigate } from 'react-router-dom';
+// import AddressForm from './AddressForm';
 import { IoCloseCircle } from "react-icons/io5";
-import AdForm from '../../Pages/Cart/AdForm';
+// import AdForm from '../../Pages/Cart/AdForm';
+// import useDeleteProduct from '../../Utils/API/useDeleteProduct';
+import OrderForm from './OrderForm';
+
+// const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
+const CheckoutProduct = lazy(() => import('./Checkout/CheckoutProduct'));
+
 
 const Cart = () => {
-    const { state, addresssMode, setmodelAddress } = useThemeContextValue();
+    const { state: { cart }, dispatch, addresssMode, setmodelAddress, getCartItem, cartItems, cartLength, formData, setFormData, OrderCartItem, setOrderCartItem, clearCartPage, total, setTotal, cartproductQuantity, setCartproductQuantity, addtocart, productID, setproductID, quantity, setQuantity } = useThemeContextValue();
     const navigate = useNavigate();
     const [model, setModel] = useState(false);
     // const [cart, setCart] = React.useState(getCartFromLocalStorage());
-    const [total, setTotal] = React.useState(0);
-    const [cartItems, setCartItems] = React.useState(0);
+
+    // const [Subtotal, setSubTotal] = useState(0);
+
+
+    const [cartDatas, setCartData] = useState([]);
+    const [cartUserData, setCartUserData] = useState([])
+    //checing the product order status
+    const [orderStatus, setOrderStatus] = useState(false);
+    // cart orderitem 
+    const [orderitem, setOrder] = useState();
+
+
+    // product total price
+
+    const [productTotal, setProductTotal] = useState([]);
+    const [p_total , setP_total] = useState([]);
+
+    // cartlength by array changes
+
+    console.log("Cart component is Render");
+
+
+
+    useEffect(() => {
+        const userAddress = JSON.parse(localStorage.getItem("formD"))
+        setFormData(userAddress);
+
+        const userForm = localStorage.getItem("login User Address")
+        // console.log("...",userForm);
+        setFormData(userForm)
+        // console.log("form data in cartpage", formData);
+        setTotal(cartItems?.totalPrice)
+    }, [])
+
+
+
+
+    
+
+
+    // Function to handle size change
+    const handleSizeChange = (itemId, newSize) => {
+        // console.log("itemId", itemId)
+        // console.log("newSize", newSize)
+        addtocart();
+
+        const updatedCart = cartItems?.items?.map(item => {
+            // console.log("size change ",item);
+            // if (item.id === itemId) {
+            //     return { ...item, size: newSize };
+            // }
+            // return item;
+        });
+        // setCartData(updatedCart);
+    };
+
+
+    /////////////////////////////////////////////////////////////////
+// this functio is calling on clearcart button is cleck is callback furnciton 
+// button is click than this function is calling
+    const ClearCart = async () => {
+        try {
+            handlecheckoutItem();
+            getCartItem(); // Assuming getCartItem is a function to update cart items
+            navigate('/payment')
+
+        } catch (error) {
+            console.error('Error occurred while deleting:', error);
+        }
+    };
+
+    // after clear cart set the all cart item inside the state value 
+    const handlecheckoutItem = useCallback((item) => {
+        // console.log(item);
+        setOrder(item)
+        // console.log("222222222222222", orderitem)
+        clearCartPage();
+        // setOrderCartItem([...OrderCartItem, item]);
+    },[]);
+
+
+
 
     const handleAdd = () => {
         setmodelAddress(!addresssMode);
         // navigate('/checkoutpage'); 
     }
-    
 
     const toggleModal = () => {
         setModel(!model)
     }
 
 
-    // React.useEffect(() => {
-    //     localStorage.setItem("cart", JSON.stringify(cart));
 
-    //     let newTotal = cart.reduce((total, cartItem) => {
-    //         return (total += cartItem.amount * cartItem.price);
-    //     }, 0);
-    //     newTotal = parseFloat(newTotal.toFixed(2));
-    //     setTotal(newTotal);
-    //     // cart items
-    //     // let newCartItems = cart.reduce((total, cartItem) => {
-    //     //     return (total += cartItem.amount);
-    //     // }, 0);
-    //     // setCartItems(newCartItems);
-    // }, [cart]);
+    ////////////////////////////////////////////////////////////////////////////////////////
+    // handle the card total price usign cartlentgh and current  prouct total price
+    const HandleProductTotal = 0;
+    let totalValueCard;
+
+    // this method is the callback fnction is access the 3 data from checkoutproduct component 
+    // this mehtod use to store all the data in array format
+    function passingTheQtyAndValue(Qty, id, productTotaPrice){
+        // totalMap[id] = value;
+        console.log("function is calling");
+        const totalmap = [];
+        totalmap[id] = productTotaPrice;
+        console.log(totalmap);
+
+        
+
+         totalValueCard = totalmap.map((id ,value) => {
+            return value + value;
+        })
+
+       
+
+    }
+
 
     return (
         <div className='h-fit mt-10 w-full px-[15px] xl:flex xl:flex-col xl:items-center xl:justify-center lg:flex lg:flex-col lg:items-center lg:justify-center 
             md:flex md:flex-col md:items-center md:justify-center 
         '>
-            <div className='xl:w-[1170px] lg:w-full md:w-full sm:w-full w-full  
+            <div className='xl:w-[1170px] lg:w-full md:w-full sm:w-full w-full flex gap-5
             pt-[39px] px-[15px] pb-0 lg:mx-[160px] xl:mx-[160px] sm:m-0 m-0 text-[16px] '>
                 <div >
                     <span className='font-bold text-[16px]'>My Bag</span>
-                    {` ${state.cart.length} item(s)`}
+                    <span className='font-bold'> <span className="text-red-500 mx-2">{cartLength}</span>items</span>
+                </div>
+                <div
+                    className='font-bold cursor-pointer bg-gray-500 px-3 py-1 rounded-lg '
+                    onClick={ClearCart}
+                >
+                    Clear Cart
                 </div>
             </div>
 
@@ -67,13 +169,24 @@ const Cart = () => {
                                 Yay! You get FREE delivery on this order
                             </span>
                         </div>
-                        
+
                     </div>
                     <div>
                         {
-                            state.cart.map((item, index) => (
-                                <CheckoutProduct item={item} key={index}/>
-                              
+                            cartItems?.items?.map((item, index) => (
+                                <Suspense fallback={<h1>Please Wait</h1>}>
+                                    <CheckoutProduct
+                                        item={item}
+                                        index={index}
+                                        setProductTotal={setProductTotal}
+                                        passingTheQtyAndValue={passingTheQtyAndValue}
+                                        onChange={() => passingTheQtyAndValue}
+                                        handleSizeChange={handleSizeChange}
+                                        cartDatas={cartDatas}
+                                    />
+                                </Suspense>
+
+
                             ))
                         }
                     </div>
@@ -102,7 +215,7 @@ const Cart = () => {
 
                     <div className='border-[1px] border-gray-300 h-[440px] cursor-pointer md:text-[12px]'>
                         <div className='p-[6px] h-[45px]'>
-                            <div className='bg-[#42A2A11A] text-[11px] px-3 rounded-md h-[32px] text-[#42A2A2] flex items-center justify-between font-semibold '> 
+                            <div className='bg-[#42A2A11A] text-[11px] px-3 rounded-md h-[32px] text-[#42A2A2] flex items-center justify-between font-semibold '>
                                 <div>Apply Coupon / Gift Card / Referral</div>
                                 <div className='flex items-center justify-center gap-2 cursor-pointer'>Redeem <span><FaAnglesRight /></span></div>
                             </div>
@@ -113,32 +226,41 @@ const Cart = () => {
                         <div className=' p-[16px] '>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px]'>
                                 <h2>Total</h2>
-                                <h2>₹4999</h2>
-                           </div>
+                                <h2>{total}</h2>
+                            </div>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px]'>
                                 <h2>Delivery Fee</h2>
                                 <h2 className='text-[#1D8802]'>FREE</h2>
                             </div>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px]'>
                                 <h2>Bag Discount</h2>
-                                <h2 className=''>-₹550</h2>
+                                <h2 className=''>0</h2>
                             </div>
                             <div className='flex items-center justify-between h-[38px] pb-[10px] text-[12px] font-bold'>
                                 <h2>Subtotal</h2>
-                                <h2 className=''>₹399</h2>
+                                <h2 className=''>₹{total}</h2>
                             </div>
                         </div>
 
                         <div className='flex items-center  h-[70px] p-[10px] border-t-[1px] border-gray-300'>
-                            <h2 className='h-[40px] w-1/2 flex flex-col pl-2'>
+                            <div className='h-[40px] w-1/2 flex flex-col pl-2'>
                                 <h2 className='text-[12px] w-[50px] pb-[1px] font-semibold'>Total</h2>
-                                <h2 className='text-[16px] w-[50.14px] font-semibold'><span className='text-[12px]'>₹</span>399</h2>
-                                 </h2>
-                            <button 
-                                onClick={toggleModal}
-                                className='btn-modal bg-[#42A2A2]   rounded-md w-[280px] h-[40px] p-[8px] font-bold text-[16px] text-[#FFFFFF]'
+                                <div className='text-[16px] w-[50.14px] font-semibold'>
+                                    <span className='text-[12px]'>₹</span>
+                                    {total}
+                                </div>
+                            </div>
+                            <button
+
+                                className='btn-modal bg-[#42A2A2] hover:bg-green-[#00B852] hover:text-gray-800 cursor-pointer rounded-md w-[280px] h-[40px] p-[8px] font-bold mt-2 text-[16px] text-[#FFFFFF]'
                             >
-                                ADD ADDRESS
+                                {formData.steet === "" ? (
+                                    <span onClick={toggleModal}>Add Address</span>
+                                ) : (
+                                    <span><Link to='/payment'>PROCEED TO CHECKOUT</Link></span>
+
+                                )}
+
                             </button>
                         </div>
 
@@ -173,9 +295,10 @@ const Cart = () => {
                         <div className="modal-content">
                             <div className='w-full'>
                                 {/* <AddressForm /> */}
-                                <AdForm/>
+                                {/* <AdForm /> */}
+                                <OrderForm setOrderStatus={setOrderStatus} model={model} setModel={setModel} />
                             </div>
-                            
+
                             <button className='close-modal'
                                 onClick={toggleModal}
                             ><IoCloseCircle size={40} /></button>

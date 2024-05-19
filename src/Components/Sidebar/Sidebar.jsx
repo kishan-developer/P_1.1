@@ -2,29 +2,48 @@ import React, { useState } from 'react';
 import { useThemeContextValue } from '../../Utils/context/ThemeContext';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
+
 // import Drop from './Drop';
-import db from '../Sidebar/db.json'
-import Dp from './Dp';
+// import db from '../Sidebar/db.json'
+// import subCategory from '../Sidebar/Child/SubCategory';
+import Size from '../Sidebar/Child/Size'
+import Brand from '../Sidebar/Child/Brand';
+import Color from '../Sidebar/Child/Color';
+import Gender from '../Sidebar/Child/Gender';
+import SubCategory from '../Sidebar/Child/SubCategory';
+
+const filterOptions = {
+    subCategory: ["shirt", "shorts", "jeans"],
+    size: ["S", "M", "L", "XL", "XXL"],
+    brand: [
+        "Bewakoof®",
+        "OFFICIAL GARFIELD MERCHANDISE",
+        "OFFICIAL DISNEY MERCHANDISE",
+        "Urban Scottish",
+        "Rigo",
+        "Bushirt",
+        "Old Grey"
+    ],
+    color: ["BLACK", "BLUE", "GREEN", "WHITE", "GREY", "BROWN", "RED", "YELLOW"],
+    gender: ["Men", "Women"]
+};
+
 
 function Sidebar() {
     const [isActive, setIsActive] = useState(false);
     const [sizes , setSizes] = useState(false);
     const { setCategory, Data, setData } = useThemeContextValue();
-    const handleClick = () => {
-        // console.log("Dropdown event", event.target.value);
-    }
-    // console.log("db sidebar page render category data", db[0].category);
 
     return (
         <>
             <div className='text-black mt-5 sticky top-5 '>
                 <div id="product_category" className=''>
                     <h1 className='text-sm text-gray-500 font-bold py-3 text-left '>FILTERS </h1>
-                    <Dp title="Category" data ={db[0].subcategory}/>
-                    <Dp title="Sizes" data={db[1].sizes} />
-                    <Dp title="Brands" data={db[2].Brand} />
-                    <Dp title="Color" data={db[3].color} />
-                    <Dp title="Gender" data={db[4].gender} />
+                    <SubCategory title="subCategory" data={filterOptions.subCategory}/>
+                    <Size title="size" data={filterOptions.size} />
+                    <Brand title="brand" data={filterOptions.brand} />
+                    <Color title="color" data={filterOptions.color} />
+                    <Gender title="gender" data={filterOptions.gender} />
                 </div>
             </div>
         </>

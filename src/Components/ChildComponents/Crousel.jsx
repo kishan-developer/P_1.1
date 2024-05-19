@@ -1,100 +1,55 @@
-// Carousel.js
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useState } from "react";
 
-const Carousel = () => {
-    const settings = {
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
+const Crousel = ({ images }) => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const goToPreviousImage = () => {
+        setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
+    };
+
+    const goToNextImage = () => {
+        setCurrentImageIndex((currentImageIndex + 1) % images.length);
     };
 
     return (
-        <Slider {...settings}>
-            <div className="p-4 flex gap-3">
-                {/* Your card content for the first card */}
-                <div className="bg-gray-200 p-4">
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/NEW-1x1-BOJ-RMIK-GIF-1701613600.gif"
-                        alt="image 2"
-
-                    />
-                </div>
+        <div className="image-slider">
+            <button className="arrow" onClick={goToPreviousImage} disabled={currentImageIndex === 0}>
+                ❮
+            </button>
+            <div className="card-container">
+                {images.map((image, index) => (
+                    <div
+                        key={image}
+                        className={`card ${currentImageIndex === index ? "active" : ""}`}
+                        style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+                    >
+                        <img src={image} alt={`Slide ${index}`} />
+                    </div>
+                ))}
             </div>
-            <div className="p-4">
-                {/* Your card content for the second card */}
-                <div className="bg-gray-200 p-4">
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/rm-1x1-tee-1701846056.jpg"
-                        alt="image 3"
-                    />
-                </div>
-            </div>
-            <div className="p-4">
-                {/* Your card content for the third card */}
-                <div className="bg-gray-200 p-4">
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif"
-                        alt="image 1"
-                    />
-                </div>
-            </div>
-            <div className="p-4">
-                {/* Your card content for the second card */}
-                <div className="bg-gray-200 p-4">
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/rm-1x1-tee-1701846056.jpg"
-                        alt="image 3"
-                    />
-                </div>
-            </div>
-            <div className="p-4">
-                {/* Your card content for the third card */}
-                <div className="bg-gray-200 p-4">
-                    <img
-                        src="https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif"
-                        alt="image 1"
-                    />
-                </div>
-            </div>
-            {/* Add more slides as needed */}
-        </Slider>
+            <button className="arrow" onClick={goToNextImage} disabled={currentImageIndex === images.length - 1}>
+                ❯
+            </button>
+        </div>
     );
 };
 
-export default Carousel;
+const images = [
+    "https://images.bewakoof.com/uploads/grid/app/NEW-1x1-BOJ-RMIK-GIF-1701613600.gif",
+    "https://images.bewakoof.com/uploads/grid/app/rm-1x1-tee-1701846056.jpg",
+    "https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif",
+    "https://images.bewakoof.com/uploads/grid/app/NEW-1x1-BOJ-RMIK-GIF-1701613600.gif",
+    "https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif",
+    "https://images.bewakoof.com/uploads/grid/app/rm-1x1-tee-1701846056.jpg"
+];
 
+const Apps = () => {
+    return (
+        <div className="app">
+            <h1>Three-Card Image Slider</h1>
+            <Crousel images={images.slice(0, 3)} /> {/* Pass the first three images for the initial render */}
+        </div>
+    );
+};
 
-//  <img
-//           src="https://images.bewakoof.com/uploads/grid/app/OOFSale-1X1-RM-Common-1701957479.gif"
-//           alt="image 1"
-//           className="h-full  w-1/3"
-//         />
-//         <img
-//           src="https://images.bewakoof.com/uploads/grid/app/NEW-1x1-BOJ-RMIK-GIF-1701613600.gif"
-//           alt="image 2"
-//           className="h-full w-1/3"
-//         />
-//         <img
-//           src="https://images.bewakoof.com/uploads/grid/app/rm-1x1-tee-1701846056.jpg"
-//           alt="image 3"
-//           className="h-full  w-1/3"
-//         />
+export default Apps;

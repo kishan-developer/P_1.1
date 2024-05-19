@@ -15,7 +15,7 @@ const SignUp = () => {
     appType: "ecommerce"
   })
 
-  console.log('signUpData name', signUpData);
+  // console.log('signUpData name', signUpData);
 
   const handleChange = (e) => {
     const updatedData = { ...signUpData };
@@ -32,9 +32,23 @@ const SignUp = () => {
     try {
       const res = await fetch('https://academics.newtonschool.co/api/v1/user/signup',options);
       const resJson = await res.json();
-      console.log(resJson);
-      localStorage.setItem('token', resJson.token)
+      if(resJson.status==="success"){
+        localStorage.clear();
+        navigate('/login');
+      }
+
+      console.log(resJson.data);
+      console.log("User Name.......", resJson.data.user.name);
+      localStorage.setItem("User Name.......",resJson.data.user.name);
+      localStorage.setItem("User Email.......", resJson.data.user.email);
+      // localStorage.setItem('token', resJson.token)
       console.log(" sign up page resJson.token", resJson.token)
+      localStorage.setItem("Sign New user Token", resJson.token)
+      //store user Address in localstorage to check befor payment and order product 
+      // address is pressent in localstorage than show in cart page "continue" button not show "add Address"
+      localStorage.setItem("User Address",resJson.data.user.address)
+      
+      alert(resJson.status);
     } catch (error) {
       console.log(error);
     }

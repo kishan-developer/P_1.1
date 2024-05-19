@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 // import useThemeContextValue from '../Content/useThemeContextValue'
 import { useThemeContextValue } from '../../Utils/context/ThemeContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchComponent = () => {
+
  
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [count, setCount ] = useState(1);
+  const navigate = useNavigate();
 
   const { setData, Data } = useThemeContextValue();
   
@@ -68,6 +71,10 @@ const SearchComponent = () => {
     setSearchTerm(e.target.value);
   }
 
+  const navigateThePage = (item) => {
+    navigate(`/${item.gender}`);
+  }
+
 
 
 
@@ -98,16 +105,20 @@ const SearchComponent = () => {
         
       </form>
       
-      <div className='dropdown absolute mt-[90px] mx-[-50px] bg-gray-100 w-[400px]'>
+      <div className='dropdown absolute mt-[52px] mx-[-50px] bg-gray-100 w-[fit]'>
 
 
         {searchResults.slice(0,6).map((item) => (
           
           <div key={item._id}  className='h-10 text-sm flex items-center justify-between border-b-2 border-gray-300 py-3 hover:bg-gray-300'>
-            <p key={item.id}  className='mx-4'>
-              {console.log(item)}
-              {item.gender} {item.color.toLowerCase()} {item.subCategory}
-            </p>
+            
+            <p onClick={navigateThePage(item)} key={item.id} className='mx-4 ' >
+                {/* {console.log(item)} */}
+                
+                {item.gender} {item.color.toLowerCase()} {item.subCategory}
+                 
+              </p>
+           
             <p className='mx-4'>{count}</p>
           </div>
           

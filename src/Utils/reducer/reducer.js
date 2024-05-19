@@ -1,6 +1,8 @@
 
 // creat a add to cart usign context Api and useReducer function 
 
+// import addToCart from "../API/AddToCart";
+
 // question. what does useReducer return => state and dispatch
 
 
@@ -11,19 +13,22 @@
 
 // useReducer() hook setup  
 // initialState and reducer function
+// const storedData = JSON.parse(localStorage.getItem('cart Data'));
 
+// Now, storedData contains your object
+// console.log("data in cart", storedData);
 // step 1
 export const initialState = {
     // product come to inside the empty array 
-    cart: [],
-    fav: []
+    // cart: storedData,
+    // fav: []
 };
 
 // step 2
 function reducer(state, action) {
 
     // get the data once you click add to cart button 
-    console.log('action', action)
+    console.log('action', action);
     // addd some action here using swith case
     switch (action.type) {
         // add action here
@@ -57,20 +62,21 @@ function reducer(state, action) {
                 ...state, fav: newFav
             }
 
-        
+
         // add to cart reducer setup / remoce form cart 
         case 'ADD_TO_CART':
-           
-            // logic to add an item to the cart
+            // // logic to add an item to the cart
             return {
                 ...state, // copy the initial state
                 // inside the cart copy the cart item , and  add a new object using action.payload
-                cart: [...state.cart, action.payload]
+                cart: [...state.cart, { ...action.payload, qty: 1 }],
+                // totalPrice:[ ...state.totalPrice] + action.payload.price,
             }
 
         case 'REMOVE_FROM_CART':
             // logic to remove an item from the cart
             let newCart = [...state.cart]
+            addToCart();
 
             const index2 = state.cart.findIndex((item) => item._id == action.payload._id);
 
@@ -83,6 +89,12 @@ function reducer(state, action) {
             return {
                 ...state, cart: newCart
             }
+
+        case "CHANGE_CART_QTY":
+            return {
+                ...state,
+                cart: state.cart.items.filter((c) => c.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty),
+            };
 
         default:
             return state;

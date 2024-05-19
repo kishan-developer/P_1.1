@@ -34,12 +34,11 @@ function Nav_DropDownList() {
 
   return (
     <>
-      <div className="dropdown-menu">
+      <div className="dropdown-menu ">
         <ul>
           {category.map(item => (
             <li>{item}</li>
           ))}
-          
         </ul>
       </div>
     </>

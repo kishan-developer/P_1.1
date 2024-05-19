@@ -9,13 +9,13 @@ import Footer from '../Components/Footer/Footer';
 
 
 function AppLayout() {
-  console.log('applayout')
+  // console.log('applayout')
   return (
     <>
 
-      <Header />
+      {/* <Header /> */}
       <Navbar />
-      <SecNav/>
+      {/* <SecNav/> */}
       {/* <Content/> */}
       {/* <Footer/> */}
 

@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Product.css';
 import ProductReview from '../ProductReview/ProductReview';
 import ProductCart from './productCart';
+// import useDeleteProduct from '../../Utils/API/useDeleteProduct';
 
 function Product() {
 
@@ -15,10 +16,61 @@ function Product() {
 
     const location = useLocation();
 
-    const { logging, Data, setData, setPage, _, dispatch, setproductID, loadMore, page } = useThemeContextValue();
+    const { logging, Data, setData, setPage, _, dispatch, setproductID, loadMore, page, favData, setFavData, favlength, setFavlength } = useThemeContextValue();
     // console.log("Data",Data);
 
     // console.log("Product page state ");
+
+
+    // get all Product in Favorites (Protected Route):
+    const getwishlist = async()=> {
+        const url = "https://academics.newtonschool.co/api/v1/ecommerce/wishlist";
+        const headers = {
+            'Content-Type': 'application/json',
+            // Add any other headers as needed
+        };
+        const authToken = localStorage.getItem("token");
+        const raw = "";
+        const options = {
+            method: 'GET', // or 'GET', 'PUT', 'DELETE','PATCH' etc.
+            headers: {
+                ...headers,
+                "Authorization": `Bearer ${authToken}`,
+                "projectId": "rcetbaqftf5m"
+            },
+            // body: raw,
+        };
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+            setFavlength(result.results);
+            console.log("wishlist data", result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // const { data, loading, error, fetchData } = useDeleteProduct(url, options, authToken);
+
+    useEffect(() => {
+        // getwishlist();
+    }, []);
+    // console.log("................", data);
+    // setFavData(data);
+
+    // console.log("get fav data product page...", favData?.results);
+    // setFavlength(favData?.results);
+    // setFavlength(favData.results);
+    // localStorage.setItem("Favorite", JSON.stringify(data));
+    
+
+    // console.log("....",favorite);
+    // Render loading state if data is loading
+    
+
+    // Render error message if there's an error
+    
+
 
 
     const SidebarCategory = async () => {
@@ -65,7 +117,6 @@ function Product() {
 
     const displayProducts = sortedAndFilteredProducts();
 
-
     // path name logic here
     const path = location.pathname;
     const firstChar = path.slice(1, 2).toUpperCase();
@@ -88,6 +139,7 @@ function Product() {
                 <h2 className='w-[70%] block py-2 px-5  text-gray-900 font-bold lg:text-2xl md:text-md text-md lg:pl-[200px] pt-12 '>
                     {name + ' Clothing'}
                     <span> {`( ${Data.length} )`}</span>
+                    
                     <div className="h-[3px] bg-yellow-600 w-[130px] mb-[42px]"></div>
                 </h2>
                  

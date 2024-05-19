@@ -1,6 +1,6 @@
 import React from 'react'
 import { useThemeContextValue } from '../../Utils/context/ThemeContext'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Admin() {
   const navigate = useNavigate();
@@ -26,15 +26,15 @@ function Admin() {
           <h2
             // onClick={()=> navigate(/admin)}
             className='hover:bg-gray-200 text-sm font-semibold text-black cursor-pointer py-2 px-2'
-          >My Account</h2>
+          > <Link to='/myaccount' className='w-full font-bold'>My Account</Link></h2>
           <h2 
             // onClick={()=> navigate(/fav)}
             className='hover:bg-gray-200 text-sm font-semibold text-black cursor-pointer py-2 px-2'
-          >My WishList</h2 >
+          ><Link to='/fav' className='w-full font-bold'>My WishList</Link></h2 >
         <h2
           // onClick={() => navigate(/cart)}
           className = 'hover:bg-gray-200 text-sm font-semibold text-black cursor-pointer py-2 px-2'
-        > My Orders</h2 >
+          > <Link to='/order' className='w-full font-bold'>My Orders </Link></h2 >
         <h2
           // onClick={() => navigate(/admin)}
           className = 'hover:bg-gray-200 text-sm font-semibold text-black cursor-pointer py-2 px-2'
