@@ -157,16 +157,16 @@ function ThemeContext(props) {
     }, [quantity])
    
     const handleSize = (item) => {
-        console.log(size);
+        // console.log(size);
         setSize(item);
     }
 
     //---------------------------------------------------------------------------------------------------------
     const addToCart = async () => {
         // console.log("addtocart is calling ")
-        console.log(`addToCart function is colling,${quantity}, ${productID}` );
-        console.log("qunatity data type check ",typeof quantity);
-        console.log("product id data type check",typeof productID);
+        // console.log(`addToCart function is colling,${quantity}, ${productID}` );
+        // console.log("qunatity data type check ",typeof quantity);
+        // console.log("product id data type check",typeof productID);
         let myHeaders = new Headers();
         myHeaders.append("projectId", "rcetbaqftf5m");
         myHeaders.append("Content-Type", "application/json");
@@ -184,7 +184,7 @@ function ThemeContext(props) {
         try {
             const response = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${productID}`,requestOptions);
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
             localStorage.setItem("addToCart Data:", JSON.stringify(result.data)); 
             setCartData(result.data);
             getCartItem();
@@ -200,7 +200,7 @@ function ThemeContext(props) {
 // -------------------------------------------------------------------------------------
     // get the all cart items 
     const getCartItem = async () => {
-        console.log(" getCartItem Function  : ");
+        // console.log(" getCartItem Function  : ");
         let myHeaders = new Headers();
         myHeaders.append("projectId", "rcetbaqftf5m");
         myHeaders.append("Content-Type", "application/json");
@@ -217,7 +217,7 @@ function ThemeContext(props) {
             const response = await fetch("https://academics.newtonschool.co/api/v1/ecommerce/cart",requestOptions);
             
             const result = await response.json();
-            console.log("get cart item", result);
+            // console.log("get cart item", result);
             setCartLength(result.results);
             setCartItems(result.data); // cart items
             localStorage.setItem("cart Data", JSON.stringify(result.data))
@@ -232,13 +232,13 @@ function ThemeContext(props) {
             let tampPriceArray = [];
             for (let j = 0; j<result.data.items.length; j++) {
                 tampPriceArray[j] = result.data.items[j].product.price;
-                console.log(result.data.items[j].product.price);
+                // console.log(result.data.items[j].product.price);
             }
             // access the product price in array format
-            console.log(tampPriceArray);
+            // console.log(tampPriceArray);
             setTotalPrice(tampPriceArray); // setting indise the settotalPrice state
             setStaticTotalPrice(tampPriceArray);
-            console.log("Hi Anand");
+            // console.log("Hi Anand");
 
             setNewCartLength(tempArray);
         } catch (error) {
@@ -386,7 +386,7 @@ function ThemeContext(props) {
         };
 
         try {
-            console.log("DELETE")
+            // console.log("DELETE")
             const response = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/wishlist/${productID}`,options);
             const result = await response.json();
             // console.log("remove futn is calling",result);
@@ -435,14 +435,19 @@ function ThemeContext(props) {
 
 
     // add order item in order page after the payment successfull
-    const useData = localStorage.getItem("formD");
-    const useDetails = JSON.parse(useData);
+    const userFormData = localStorage.getItem("formD");
+    // console.log(typeof userFormData);
+    // const useDetails = JSON.parse(useData);
     // console.log("user Details localStorage ", useDetails.street);
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    // add order Item funtion is calling 
     const addOrderItem = async () => {
         
         const pID = localStorage.getItem("payment_page_product_id")
-        console.log("context page",pID);
+        // console.log("context page",pID);
         const qut = localStorage.getItem("PaymentPage_Product_quantity");
         const token = localStorage.getItem("token"); // Replace with your JWT token
 
@@ -467,11 +472,11 @@ function ThemeContext(props) {
             "quantity": qut,
             "addressType": "HOME",
             "address": {
-                "street": useDetails.street,
-                "city": useDetails.city,
-                "state": useDetails.state,
-                "country": useDetails.country,
-                "zipCode": useDetails.zipCode
+                "street": useDetails?.street,
+                "city": useDetails?.city,
+                "state": useDetails?.state,
+                "country": useDetails?.country,
+                "zipCode": useDetails?.zipCode
             }
         });
 
@@ -484,7 +489,7 @@ function ThemeContext(props) {
         try {
             const response = await fetch(url, requestOptions);
             const result = await response.json();
-            console.log("buy now api", result); // Handle response data as neede
+            // console.log("buy now api", result); // Handle response data as neede
 
         } catch (error) {
             console.error('Error:', error.message);
@@ -493,23 +498,24 @@ function ThemeContext(props) {
 
     const handleOrgerPayment = () => {
         
-        console.log("fun is calling handleOrgerPayment ");
+        // console.log("fun is calling handleOrgerPayment ");
         const totalValue = localStorage.getItem("totalAmount");
-        console.log("total Value",totalValue);
+        // console.log(" ThemeContext components totalValue", totalValue);
         // console.log("handlepauymet : formData.street ", formData.street)
         if (totalValue === 0) {
-            alert("Please Add some product")
+            alert("Please Add some product");
+            return;
         } else {
             addOrderItem();
             clearCartPage()
             getCartItem()
-            alert(`User paid successfully: ${totalValue}`);
+            // alert(`User paid successfully: ${totalValue}`);
             
         }
     }
 
     return (
-        <DataContaxt.Provider value={{ setAuth, auth, logging, Data, setData, cart, filteredData, setPage, GenderType, productID, setproductID, reducer, initialState, state, dispatch, setModel, model, setAdminData, adminData, loadMore, setmodelAddress, addresssMode, setReview, review, quantity, setQuantity, size, setSize, addToCart, cartData, cartLength, setCartLength, getCartItem, cartItems, handleSize, favData, setFavData, favlength, setFavlength, getAllProductFav, isOpen, setOpen, setCartData, removeWishlistProduct, paymentData, setPaymentData, orderData, setOrderData, getOrderItem, userName, userEmail, formData, setFormData, OrderCartItem, setOrderCartItem, clearCartPage, total, setTotal, cartproductQuantity, setCartproductQuantity, handleOrgerPayment, newCartLength, setNewCartLength, cardTotal, setCartTotal, setCartItems, totalPrice, setTotalPrice, staicTotalPrice, setStaticTotalPrice }}>
+        <DataContaxt.Provider value={{ formData, setFormData,setAuth, auth, logging, Data, setData, cart, filteredData, setPage, GenderType, productID, setproductID, reducer, initialState, state, dispatch, setModel, model, setAdminData, adminData, loadMore, setmodelAddress, addresssMode, setReview, review, quantity, setQuantity, size, setSize, addToCart, cartData, cartLength, setCartLength, getCartItem, cartItems, handleSize, favData, setFavData, favlength, setFavlength, getAllProductFav, isOpen, setOpen, setCartData, removeWishlistProduct, paymentData, setPaymentData, orderData, setOrderData, getOrderItem, userName, userEmail, OrderCartItem, setOrderCartItem, clearCartPage, total, setTotal, cartproductQuantity, setCartproductQuantity, handleOrgerPayment, newCartLength, setNewCartLength, cardTotal, setCartTotal, setCartItems, totalPrice, setTotalPrice, staicTotalPrice, setStaticTotalPrice }}>
             {props.children}
         </DataContaxt.Provider>
     )

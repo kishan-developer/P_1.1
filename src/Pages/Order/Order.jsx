@@ -20,7 +20,7 @@ const Order = () => {
 
     
     useEffect(() => {
-        console.log("Order page")
+        // console.log("Order page")
         // clearCartPage()
         getOrderItem()  
         // clearCartPage() 

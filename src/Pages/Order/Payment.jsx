@@ -15,6 +15,7 @@ const Payment = () => {
     const [payAmount, setPayAmount] = useState(0);
 
 
+
     const navigate = useNavigate();
     // useEffect(() => {
     //     // getOrderItem();
@@ -22,6 +23,7 @@ const Payment = () => {
     //     console.log("OrderCartItem", OrderCartItem);
     // }, [])
     const useData = localStorage.getItem("formD");
+    // console.log(typeof useData)
     const useDetails = JSON.parse(useData);
     // if(useDetails){
     //     setFormData(useDetails);
@@ -40,17 +42,20 @@ const Payment = () => {
         // console.log("OrderCartItem", OrderCartItem);
         // Calculate total sum
         // const totalSum = orderData.reduce((acc, curr) => acc + curr.order.totalPrice, 0);
-        const totalSum = OrderCartItem?.totalPrice;
+        // const totalSum = OrderCartItem?.totalPrice;
+
+        const totalcartValue = localStorage.getItem('dummyTotalPrice');
+
         // Update state with the total sum
-        setTotalValue(totalSum);
-        if (totalSum > 0) {
-            setdiscount(totalValue * 0.25);
+        setTotalValue(totalcartValue);
+        if (totalcartValue > 0) {
+            setdiscount(totalcartValue * 0.25);
             // const twentyFivePercent = totalValue * 0.25;
             // console.log("25% of 1465 is:", twentyFivePercent);
-            setPayAmount(totalValue - discount);
+            setPayAmount(totalcartValue - discount);
         }
-        setPayAmount(totalValue - discount);
-        localStorage.setItem('totalAmount', payAmount);
+        setPayAmount(totalcartValue - discount);
+        localStorage.setItem('totalAmount', totalcartValue);
 
     }, [orderData]); // Make sure to include all dependencies that affect the orderData array
 
@@ -62,6 +67,7 @@ const Payment = () => {
         // console.log(formData.street)
         if (totalValue === 0) {
             alert("Please Add some product")
+            navigate('/men');
         } else {
             addOrderItem();
             clearCartPage()
@@ -105,11 +111,11 @@ const Payment = () => {
             "quantity": qut,
             "addressType": "HOME",
             "address": {
-                "street": useDetails.street,
-                "city": useDetails.city,
-                "state": useDetails.state,
-                "country": useDetails.country,
-                "zipCode": useDetails.zipCode
+                "street": useDetails?.street,
+                "city": useDetails?.city,
+                "state": useDetails?.state,
+                "country": useDetails?.country,
+                "zipCode": useDetails?.zipCode
             }
         });
         // console.log("raw", raw)
@@ -127,7 +133,7 @@ const Payment = () => {
         try {
             const response = await fetch(url, requestOptions);
             const result = await response.json();
-            console.log("buy now api", result); // Handle response data as neede
+            console.log("buy now api", result.status); // Handle response data as neede
         } catch (error) {
             console.error('Error:', error.message);
         }
@@ -136,6 +142,7 @@ const Payment = () => {
 
     // pass the total amount in backend using url 
     const handlecheckoutorder = (totalValue) => {
+        // console.log("handlecheckoutorder totalValue", totalValue);
         checkoutHandler(totalValue);
         // window.location.href = "http://localhost:5173/paymentsuccess?reference=pay_NynRrvhnwDr9qm";
         // // Step 2: Once the product page is loaded, call the product API function
@@ -153,6 +160,7 @@ const Payment = () => {
 
 
     const checkoutHandler = async (totalValue) => {
+        console.log("chekoutHandler TotalValue", totalValue);
         const userEmail = localStorage.getItem("login User Email.......");
         const userName = localStorage.getItem("login User Name.......");
 
@@ -163,7 +171,9 @@ const Payment = () => {
         const { data: { order } } = await axios.post("http://localhost:4000/api/checkout", {
             totalValue
         })
-        console.log(order);
+        // console.log("Order Data Payment page",order);
+
+
         const options = {
             key, // Enter the Key ID generated from the Dashboard
             amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -179,7 +189,7 @@ const Payment = () => {
                 contact: "9000090000"
             },
             notes: {
-                address: useDetails.street
+                address: useDetails?.street
             },
             theme: {
                 color: "#121212"

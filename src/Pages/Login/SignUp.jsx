@@ -64,7 +64,7 @@ const SignUp = () => {
   }, [])
 
   return (
-    <div className="flex items-center  login h-screen w-full">
+    <div className="flex justify-center items-center h-screen w-full ">
       <div className=" login w-[600px] h-[400px] text-xl bg-gray-500 py-5 px-12 flex flex-col gap-3 rounded-md">
         <h3 className="font-bold text-black" >Sign Up</h3>
         <input
@@ -103,7 +103,7 @@ const SignUp = () => {
         </button>
         <span style={{ color: 'white' }}>Already Have A Account ?</span>
         <Link to='/login'>
-          <button variant="contained" >Login Here</button>
+          <button variant="contained" className="bg-blue-600 px-5 py-2 rounded-lg cursor-pointer" >Login Here</button>
         </Link>
       </div>
     </div>

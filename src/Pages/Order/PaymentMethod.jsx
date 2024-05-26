@@ -2,7 +2,7 @@ import React from 'react'
 import GooglePay from './GooglePay'
 import axios from 'axios';
 
-function PaymentMethod({amount, handleOrgerPayment }) {
+function PaymentMethod({ amount, handleOrgerPayment }) {
 
   return (
     <>

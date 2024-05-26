@@ -10,66 +10,13 @@ const OrderPlace = () => {
     const referenceNum = searchQuery.get("reference");
     const { productID, orderData, setOrderData, getOrderItem, userName, OrderCartItem, setOrderCartItem, cartItems, clearCartPage, getCartItem, formData, setFormData, quantity, setQuantity, size, setSize, handleOrgerPayment } = useThemeContextValue();
 
-    //handleOrgerPayment 
-    // const handleOrgerPayment = () => {
-    //     // console.log("handlepauymet : formData.street ", formData.street)
-
-    //         handleSubmit();
-    //         clearCartPage()
-    //         getCartItem()
-    //         alert(`User paid successfully: ${totalValue}`);
-    //         navigate('/paymentsuccess')
-    // }
-
-    // const handleSubmit = async () => {
-    //     // console.log("buy api calling")
-    //     // event.preventDefault();
-    //     const pID = localStorage.getItem("payment_page_product_id")
-    //     const qut = localStorage.getItem("PaymentPage_Product_quantity");
-    //     const token = localStorage.getItem("token"); // Replace with your JWT token
-
-    //     const url = "https://academics.newtonschool.co/api/v1/ecommerce/order";
-
-    //     const myHeaders = new Headers();
-    //     myHeaders.append("projectId", "rcetbaqftf5m");
-    //     myHeaders.append("Content-Type", "application/json");
-    //     myHeaders.append("Authorization", `Bearer ${token}`);
-
-    //     const raw = JSON.stringify({
-    //         "productId": pID,
-    //         "quantity": qut,
-    //         "addressType": "HOME",
-    //         "address": {
-    //             "street": useDetails.street,
-    //             "city": useDetails.city,
-    //             "state": useDetails.state,
-    //             "country": useDetails.country,
-    //             "zipCode": useDetails.zipCode
-    //         }
-    //     });
-
-    //     const requestOptions = {
-    //         method: "POST",
-    //         headers: myHeaders,
-    //         body: raw,
-    //         redirect: "follow"
-    //     };
-    //     try {
-    //         const response = await fetch(url, requestOptions);
-    //         const result = await response.json();
-    //         console.log("buy now api", result); // Handle response data as neede
-    //     } catch (error) {
-    //         console.error('Error:', error.message);
-    //     }
-    // }
-
     useEffect(() => {
-        console.log("fun is callinng handleOrgerPayment order place page")
-        // handleOrgerPayment()
+        // console.log("fun is callinng handleOrgerPayment order place page")
+        handleOrgerPayment()
     }, [])
 
     const handleO = () => {
-        handleOrgerPayment();
+        // handleOrgerPayment();
         navigate('/order')
     }
 

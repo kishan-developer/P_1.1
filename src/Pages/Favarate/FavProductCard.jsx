@@ -24,11 +24,11 @@ function FavProductCart({ item, index }) {
  
 //////////////////////////////////////////////////////////////////////
   function removeFromFavorite() {
-    console.log("productID ", productID)
+    // console.log("productID ", productID)
     removeWishlistProduct();
-    console.log("+++++")
+    // console.log("+++++")
     getAllProductFav(); 
-    console.log("-------")
+    // console.log("-------")
   }
 
   
@@ -79,7 +79,7 @@ function FavProductCart({ item, index }) {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
-      console.log(result.data);
+      // console.log(result.data);
       if(result.status === "success"){
         setResultStatus(true);
         getCartItem();

@@ -8,37 +8,13 @@ const OrderForm = ({ setOrderStatus, model, setModel }) => {
     // it help to user will be add one tiem address than order any time any product in the same address 
     // thats the reason i am use the this state inside the "useThemeContextValue()"
 
-    // const [formData, setFormData] = useState({
-    //     productIds: productID,
-    //     addressType: 'HOME',
-    //     street: '',
-    //     city: '',
-    //     state: '',
-    //     country: 'USA',
-    //     zipCode: ''
-    // });
-
-
-    // console.log("product Id in order form ", productID);
-    
-    // console.log("cartItems. order form page", cartItems);
-
-    // const handleProductIdChange = (index, value) => {
-    //     const newProductIds = [...formData.productIds];
-    //     newProductIds[index] = value;
-    //     setFormData({
-    //         ...formData,
-    //         productIds: newProductIds
-    //     });
-    // }
-
-    
-
+   
 
     const handleFormSubmit =() => {
+        // console.log("orderForm Page", formData)
         localStorage.setItem("formD", JSON.stringify(formData));
-        // alert("form subit orderForm page")
-        console.log("22222",formData);
+        alert("form subit orderForm page")
+        // console.log("22222",typeof formData);
     }
 
     const handleChange = (event) => {
@@ -67,6 +43,7 @@ const OrderForm = ({ setOrderStatus, model, setModel }) => {
                 Zip Code:
                 <input className='outline-none pl-2' placeholder='Enter zipCode/pincode' type="text" name="zipCode" value={formData?.zipCode} onChange={handleChange} />
             </label>
+
             <button className='bg-red-300 mb-2 p-2 font-semibold' type="submit">Submit</button>
         </form>
     );

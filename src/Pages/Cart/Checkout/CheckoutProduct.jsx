@@ -25,7 +25,7 @@ function CheckoutProduct({ item, index, handleSizeChange, cartDatas, setProductT
 
     const [newObj, setNewObj] = useState([]);
 
-    console.log("checkoutProduct component render");
+    // console.log("checkoutProduct component render");
     // console.log("cartItems", cartItems);
 
     const [copyCartItems , setCopyCartItems] = useState(cartItems);
@@ -33,8 +33,8 @@ function CheckoutProduct({ item, index, handleSizeChange, cartDatas, setProductT
 
 
     
-    console.log("copyCartItems",copyCartItems);
-    console.log("copyCartItems_Total Price", copyCartItems.totalPrice);
+    // console.log("copyCartItems",copyCartItems);
+    // console.log("copyCartItems_Total Price", copyCartItems.totalPrice);
 
 
     
@@ -103,7 +103,7 @@ function CheckoutProduct({ item, index, handleSizeChange, cartDatas, setProductT
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-            console.log("remoceCArtData",result.data);
+            // console.log("remoceCArtData",result.data);
             setCartItems(result.data.items); // this is the solution of remove cart data not updated
             getCartItem();
             // console.log("remove data from cart.....", result);
@@ -233,7 +233,7 @@ function CheckoutProduct({ item, index, handleSizeChange, cartDatas, setProductT
         }
         setTotal(totalProductPrice);
         
-        console.log("total price",total)
+        // console.log("total price",total)
         
 
     }, [newQuantity])

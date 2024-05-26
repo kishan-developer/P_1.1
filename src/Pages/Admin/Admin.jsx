@@ -15,6 +15,10 @@ function Admin() {
     navigate('/');
   }
 
+  window.handleModelActions = () => {
+    console.log("window is calling ");
+  }
+
   return (
     <>
       {model && (

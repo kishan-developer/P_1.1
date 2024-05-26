@@ -9,7 +9,7 @@ const PaymentProductCart = ({ item, OrderCartItem }) => {
     localStorage.setItem("PaymentPage_Product_quantity", item.quantity);
     // setproductID(item._id);
     setQuantity(item._quantity);
-    setSize(item.size)
+    // setSize(item.size)
 
     const creatidDate = OrderCartItem.updatedAt;
 
@@ -25,7 +25,7 @@ const PaymentProductCart = ({ item, OrderCartItem }) => {
 
     // console.log("Date after 7 days:", formattedDate);
     localStorage.setItem("payment_page_product_id",item.product._id)
-    console.log("item.product._id",item.product._id)
+    // console.log("item.product._id",item.product._id)
 
     return (
         <>

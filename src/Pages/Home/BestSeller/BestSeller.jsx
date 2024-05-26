@@ -35,7 +35,7 @@ function BestSeller() {
             setImageData(result.data);
             setLodding(true)
             // setData((prevProducts) => [...prevProducts, ...result.data]); // Concatenate new data
-            setLodding(false)
+            // setLodding(false)
         } catch (error) {
             // setLodding(false)
             console.log(error);

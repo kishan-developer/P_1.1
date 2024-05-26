@@ -82,15 +82,15 @@ const Login = () => {
             }
             alert(resJson.status);
 
-            console.log("login User Name.......", resJson.data.name);
-            localStorage.setItem("login User Name.......", resJson.data.name);
-            localStorage.setItem("login User Email.......", resJson.data.email);
+            console.log("login User Name.......", resJson?.data?.user?.name);
+            localStorage.setItem("login User Name.......", resJson?.data?.user?.name);
+            localStorage.setItem("login User Email.......", resJson?.data?.user?.email);
             // localStorage.setItem('token', resJson.token)
-            console.log("login sign up page resJson.token", resJson.token)
-            localStorage.setItem("login Sign New user Token", resJson.token)
+            console.log("login sign up page resJson.token", resJson?.token)
+            localStorage.setItem("login Sign New user Token", resJson?.token)
             //store user Address in localstorage to check befor payment and order product 
             // address is pressent in localstorage than show in cart page "continue" button not show "add Address"
-            localStorage.setItem("login User Address", resJson.data.address)
+            localStorage.setItem("login User Address", resJson.data?.user?.address)
         } catch (error) {
             console.log(error);
         }

@@ -17,7 +17,7 @@ const CheckoutProduct = lazy(() => import('./Checkout/CheckoutProduct'));
 
 
 const Cart = () => {
-    const { state: { cart }, dispatch, addresssMode, setmodelAddress, getCartItem, cartItems, cartLength, formData, setFormData, OrderCartItem, setOrderCartItem, clearCartPage, total, setTotal, cartproductQuantity, setCartproductQuantity, addtocart, productID, setproductID, quantity, setQuantity } = useThemeContextValue();
+    const { state: { cart }, dispatch, addresssMode, setmodelAddress, getCartItem, cartItems, cartLength, OrderCartItem, setOrderCartItem, clearCartPage, total, setTotal, cartproductQuantity, setCartproductQuantity, addtocart, productID, setproductID, quantity, setQuantity, formData, setFormData } = useThemeContextValue();
     const navigate = useNavigate();
     const [model, setModel] = useState(false);
     // const [cart, setCart] = React.useState(getCartFromLocalStorage());
@@ -32,27 +32,30 @@ const Cart = () => {
     // cart orderitem 
     const [orderitem, setOrder] = useState();
 
-
     // product total price
-
     const [productTotal, setProductTotal] = useState([]);
-    const [p_total , setP_total] = useState([]);
+    const [p_total ,setP_total] = useState([]);
 
     // cartlength by array changes
+    const [formDUser , setUserFormData] = useState(null);
 
-    console.log("Cart component is Render");
-
+    // console.log("Cart component is Render");
 
 
     useEffect(() => {
-        const userAddress = JSON.parse(localStorage.getItem("formD"))
-        setFormData(userAddress);
+        // JSON.stringify() takes a JavaScript object and transforms it into a JSON string.
+        // JSON.parse() takes a JSON string and transforms it into a JavaScript object.
+        const userAddress = localStorage.getItem("formD");
+        // console.log("userAddress", userAddress);
+        // setFormData(userAddress);
+        setUserFormData(userAddress);
 
         const userForm = localStorage.getItem("login User Address")
-        // console.log("...",userForm);
-        setFormData(userForm)
+        // console.log("...", userForm);
+        // setFormData(userForm)
         // console.log("form data in cartpage", formData);
         setTotal(cartItems?.totalPrice)
+
     }, [])
 
 
@@ -124,10 +127,10 @@ const Cart = () => {
     // this mehtod use to store all the data in array format
     function passingTheQtyAndValue(Qty, id, productTotaPrice){
         // totalMap[id] = value;
-        console.log("function is calling");
+        // console.log("function is calling");
         const totalmap = [];
         totalmap[id] = productTotaPrice;
-        console.log(totalmap);
+        // console.log(totalmap);
 
         
 
@@ -139,6 +142,9 @@ const Cart = () => {
 
     }
 
+
+
+    // console.log("formData ...",formData)
 
     return (
         <div className='h-fit mt-10 w-full px-[15px] xl:flex xl:flex-col xl:items-center xl:justify-center lg:flex lg:flex-col lg:items-center lg:justify-center 
@@ -252,13 +258,17 @@ const Cart = () => {
                             </div>
                             <button
 
-                                className='btn-modal bg-[#42A2A2] hover:bg-green-[#00B852] hover:text-gray-800 cursor-pointer rounded-md w-[280px] h-[40px] p-[8px] font-bold mt-2 text-[16px] text-[#FFFFFF]'
+                                className='btn-modal bg-[#42A2A2] hover:bg-green-[#00B852] hover:text-gray-800 cursor-pointer rounded-md w-[280px] h-[40px] p-[8px] font-bold  text-[16px] text-[#FFFFFF]'
                             >
-                                {formData.steet === "" ? (
+
+                               
+                                    {/* <span onClick={toggleModal}>Add Address</span> */}
+                               
+
+                                {FormData?.street === '' ? (
                                     <span onClick={toggleModal}>Add Address</span>
                                 ) : (
-                                    <span><Link to='/payment'>PROCEED TO CHECKOUT</Link></span>
-
+                                    <span className="text-sm"><Link to='/payment'>PROCEED TO CHECKOUT</Link></span>
                                 )}
 
                             </button>
