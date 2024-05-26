@@ -7,7 +7,7 @@ import DropBtn from '../../Components/ChildComponents/DropBtn';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Product.css';
 import ProductReview from '../ProductReview/ProductReview';
-import ProductCart from './productCart';
+import ProductCart from './ProductCart';
 // import useDeleteProduct from '../../Utils/API/useDeleteProduct';
 
 function Product() {
