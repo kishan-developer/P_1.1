@@ -65,45 +65,48 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center h-screen w-full ">
-      <div className=" login w-[600px] h-[400px] text-xl bg-gray-500 py-5 px-12 flex flex-col gap-3 rounded-md">
-        <h3 className="font-bold text-black" >Sign Up</h3>
-        <input
-          onChange={handleChange}
-          name='name'
-          placeholder='Enter UserName'
-          type='text'
-          classes='login-input'
-          className="rounded-md px-5 py-2 text-xl w-[100%]"
-        />
+      <div className="w-[350px]  xl:w-[600px] lg:w-[500px] md:w-[400px]  h-[400px] text-xl bg-gray-500 py-5 px-12 flex flex-col gap-3 rounded-md">
+        <h3 className="font-bold text-black" >Sign Up...............</h3>
+        
+      
+          <input
+            onChange={handleChange}
+            name='name'
+            placeholder='Enter UserName'
+            type='text'
+            classes='login-input'
+            className="rounded-md px-5 py-2  text-xl "
+          />
 
-        <input
-          onChange={handleChange}
-          name='email'
-          placeholder='Enter Email'
-          type='email'
-          classes='login-input'
-          className="rounded-md px-5 py-2 text-xl w-[100%]"
-        />
+          <input
+            onChange={handleChange}
+            name='email'
+            placeholder='Enter Email'
+            type='email'
+            classes='login-input'
+            className="rounded-md px-5 py-2 text-xl "
+          />
 
-        <input
-          onChange={handleChange}
-          name='password'
-          placeholder='Enter Password'
-          type='password'
-          classes='login-input'
-          className="rounded-md px-5 py-2 text-xl w-[100%]"
-        />
+          <input
+            onChange={handleChange}
+            name='password'
+            placeholder='Enter Password'
+            type='password'
+            classes='login-input'
+            className="rounded-md px-5 py-2 text-xl"
+          />
 
-        <button
-          onClick={handleContinue}
-          variant="contained"
-          className="bg-blue-600 py-2 rounded-md font-bold"
-        >
-          Continue
-        </button>
+          <button
+            onClick={handleContinue}
+            variant="contained"
+            className="bg-blue-600 py-2 rounded-md font-bold"
+          >
+            Continue
+          </button>
+        
         <span style={{ color: 'white' }}>Already Have A Account ?</span>
         <Link to='/login'>
-          <button variant="contained" className="bg-blue-600 px-5 py-2 rounded-lg cursor-pointer" >Login Here</button>
+          <button variant="contained" className="bg-blue-600 px-5 py-2 rounded-lg cursor-pointer">Login Here</button>
         </Link>
       </div>
     </div>

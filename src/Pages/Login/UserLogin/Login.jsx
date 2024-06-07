@@ -123,11 +123,11 @@ const Login = () => {
     }
 
     return (
-        <div className="flex items-center  login h-screen w-full">
+        <div className="flex items-center login h-screen w-full ">
             <div
                 // onClick={handleFormSubmit }
-                className="w-[600px] h-[400px] text-xl bg-gray-500 py-5 px-12 flex flex-col gap-3 rounded-md">
-                <div className="text-2xl font-bold">Login</div>
+                className="xl:w-[600px] lg:w-[500px] md:w-[400px] w-[350px] h-[400px] text-xl bg-gray-500 py-5 px-12 flex flex-col gap-3 rounded-md">
+                <div className="text-2xl font-bold">Login..............</div>
                 <input
                     onChange={handleChange}
                     value={loginData.email}
@@ -138,7 +138,7 @@ const Login = () => {
                     className="rounded-md px-5 py-2 text-xl w-[100%]"
 
                 />
-                <div className="w-[600px] flex ">
+                <div className="xl:w-[500px] lg:w-[500px] md:w-[400px] w-[253px] flex ">
                     <input
                         onChange={handleChange}
                         value={loginData.password}
@@ -146,7 +146,7 @@ const Login = () => {
                         placeholder='Enter Password'
                         type={type}
                         classes='login-input'
-                        className="rounded-md px-5 py-2 w-[84%]"
+                        className="rounded-md px-5 py-2 w-[100%]"
                     />
                     <span className="flex justify-around items-center" onClick={handleToggle}>
                         <Icon className="absolute mr-10" icon={icon} size={20} />
