@@ -141,16 +141,16 @@ const Payment = () => {
 
 
     // pass the total amount in backend using url 
-    const handlecheckoutorder = (totalValue) => {
-        // console.log("handlecheckoutorder totalValue", totalValue);
-        checkoutHandler(totalValue);
-        // window.location.href = "http://localhost:5173/paymentsuccess?reference=pay_NynRrvhnwDr9qm";
-        // // Step 2: Once the product page is loaded, call the product API function
-        // window.onload = function () {
-        //     // Call your product API function here
-        //     handleOrgerPayment();
-        // };
-    }
+    // const handlecheckoutorder = (totalValue) => {
+    //     // console.log("handlecheckoutorder totalValue", totalValue);
+    //     checkoutHandler(totalValue);
+    //     // window.location.href = "http://localhost:5173/paymentsuccess?reference=pay_NynRrvhnwDr9qm";
+    //     // // Step 2: Once the product page is loaded, call the product API function
+    //     // window.onload = function () {
+    //     //     // Call your product API function here
+    //     //     handleOrgerPayment();
+    //     // };
+    // }
 
     // here i want to navigate the order success payment then product add inside the order list
     // Step 1: Navigate to the product page using Navigator object
@@ -159,7 +159,7 @@ const Payment = () => {
 
 
 
-    const checkoutHandler = async (totalValue) => {
+    const RazorpayDisplay = async (totalValue) => {
         console.log("chekoutHandler TotalValue", totalValue);
         const userEmail = localStorage.getItem("login User Email.......");
         const userName = localStorage.getItem("login User Name.......");
@@ -188,6 +188,7 @@ const Payment = () => {
                 email: userEmail,
                 contact: "9000090000"
             },
+            
             notes: {
                 address: useDetails?.street
             },
@@ -202,6 +203,7 @@ const Payment = () => {
 
 
 
+
     return (
         <div className='xl:flex-row lg:flex-row flex flex-col gap-5 w-full h-fit xl:px-[15rem] lg:px-[4rem] md:px-[4rem] sm:px-[4rem] px-[1rem]'>
             <div className='xl:w-2/3 lg:w-2/3 w-full my-10'>
@@ -210,7 +212,7 @@ const Payment = () => {
                     <PaymentMethod amount={totalValue} handleOrgerPayment={handleOrgerPayment} />
                     {/* <PaymentPage/> */}
                     <button
-                        onClick={() => handlecheckoutorder(totalValue)}
+                        onClick={() => RazorpayDisplay(totalValue)}
                         className="bg-blue-300 rounded-md px-5 py-2 mt-5 font-semibold cursor-pointer "
                     >
                         Razarpay
