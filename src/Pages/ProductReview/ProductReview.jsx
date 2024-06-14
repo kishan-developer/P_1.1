@@ -48,7 +48,7 @@ function ProductReview() {
             
         }
         addToCart(productID, quantity);
-        alert("add to cart function is calling ")
+        // alert("add to cart function is calling ")
     }
 
     // get product review page data using product id and fetch data 

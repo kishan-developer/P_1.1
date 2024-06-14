@@ -16,7 +16,7 @@ const OrderPlace = () => {
     }, [])
 
     const handleO = () => {
-        // handleOrgerPayment();
+        handleOrgerPayment();
         navigate('/order')
     }
 
@@ -34,12 +34,7 @@ const OrderPlace = () => {
                 <p
                     onClick={() => handleO()} className="cursor-pointer bg-[#42A2A2]  px-3 rounded-lg py-3 transition ease-in-out hover:-translate-y-1 hover:scale-110  duration-500 ...">Your Order has been placed</p>
 
-                <button
-                    className="bg-gray-500 px-6 py-2"
-                   
-                >
-                    Order
-                </button>
+                
             </div>
 
         </div>

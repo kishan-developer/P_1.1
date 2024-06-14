@@ -437,7 +437,7 @@ function ThemeContext(props) {
     // add order item in order page after the payment successfull
     const userFormData = localStorage.getItem("formD");
     // console.log(typeof userFormData);
-    // const useDetails = JSON.parse(useData);
+    const useDetails = JSON.parse(userFormData);
     // console.log("user Details localStorage ", useDetails.street);
 
 
@@ -500,7 +500,7 @@ function ThemeContext(props) {
         
         // console.log("fun is calling handleOrgerPayment ");
         const totalValue = localStorage.getItem("totalAmount");
-        // console.log(" ThemeContext components totalValue", totalValue);
+        console.log(" ThemeContext components totalValue", totalValue);
         // console.log("handlepauymet : formData.street ", formData.street)
         if (totalValue === 0) {
             alert("Please Add some product");
@@ -509,7 +509,7 @@ function ThemeContext(props) {
             addOrderItem();
             clearCartPage()
             getCartItem()
-            // alert(`User paid successfully: ${totalValue}`);
+            alert(`User paid successfully: ${totalValue}`);
             
         }
     }
