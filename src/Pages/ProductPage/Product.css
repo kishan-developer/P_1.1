@@ -5,7 +5,7 @@
 
 #childs {
     /* max-width:1170px; */
-    min-width: 388px;
+    min-width: 318px;
     /* width: fit-content; */
     /* margin: 0 1px; */
     display: flex;
@@ -24,12 +24,13 @@
 }
 
 #product_cards_section{
-    width: 887px;
+    /* width: 887px; */
+    width: 70%;
     /* background-color: yellow; */
     display: block;
 }
 .product {
-    width: 887px;
+    width: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -50,7 +51,8 @@
     max-height: 369px;
     min-height: 231px;
 }
-@media screen and (max-width:770px){
+
+@media screen and (max-width:822px){
     .sidebar_product_type {
             max-width: 400px;
             padding: 0 15px 13px;

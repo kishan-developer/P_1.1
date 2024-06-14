@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import '../Second_section/second.css'
 
 const data = [
     {
@@ -40,16 +41,16 @@ const data = [
 function Second() {
 
     return (
-        <>
+        <div className="second_card_section">
             {
                 data.map((item, index) => (
-                    <div key={index} className='w-32 h-[280px] m-auto  '>
+                    <div key={index} className='box_card'>
                         <img className='h-[180px]' src={item.images} alt="img" />
                         <h2 className='h-[50px]'>{item.name}</h2>
                     </div>
                 ))
             }
-        </>
+        </div>
     )
 }
 

@@ -117,7 +117,7 @@ function ProductCart({ product, index }) {
     return (
         <>
         
-            <div key={product._id} className="cards mb-5  " >
+            <div key={product._id} className="cards " >
                 <img onClick={() => handleReviewPage(product._id)} src={product.displayImage} alt="image" className='product_img w-full ' />
 
                 <div id="product_info" className='px-3 cursor-pointer' >

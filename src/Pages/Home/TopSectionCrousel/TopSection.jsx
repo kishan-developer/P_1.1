@@ -12,7 +12,7 @@ import 'swiper/css/scrollbar';
 
 function TopSection() {
     return (
-        <div className='w-full lg:h-[550px] h-fit gap-3 '>
+        <div className='w-full  h-fit gap-3 '>
             <Swiper
                 className='py-5'
                 // install Swiper modules
@@ -107,7 +107,7 @@ function TopSection() {
                     <img
                         src="https://images.bewakoof.com/uploads/grid/app/Classic-Fit-Tshirt-Common-1x1-banner-1709289795.jpg"
                         alt="image 1"
-                        className="h-full "
+                        className="h-full"
                     />
                 </SwiperSlide>
             </Swiper>

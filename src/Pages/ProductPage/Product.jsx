@@ -126,7 +126,7 @@ function Product() {
 
     return (
         <>
-            <div id="main" className='text-black'>
+            <div id="main" className='text-black bg-yellow-500 '>
                 <h2 className='w-full flex items-start py-2 px-5 text-gray-900 lg:text-2xl md:text-md text-sm lg:pl-[200px] pt-5'>
                     <button className='w-full text-start text-sm'>
                         {/* <DropBtn /> */}
@@ -144,7 +144,7 @@ function Product() {
                 </h2>
                  
 
-                <div id="childs" className=' '>
+                <div id="childs" className='bg-yellow-800 '>
                     <div className='sidebar_product_type mt-10'>
                         <Sidebar />
                     </div>

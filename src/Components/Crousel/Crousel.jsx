@@ -35,7 +35,7 @@ const Crousel = () => {
             {/* Previous Button */}
             <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full focus:outline-none"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full focus:outline-none"
             >
                 Previous
             </button>
@@ -43,7 +43,7 @@ const Crousel = () => {
             {/* Next Button */}
             <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full focus:outline-none"
+                className="absolute right-0 top-1/2 transform -translate-y-1/2  text-white p-2 rounded-full focus:outline-none"
             >
                 Next
             </button>

@@ -73,6 +73,7 @@ const SearchComponent = () => {
 
   const navigateThePage = (item) => {
     navigate(`/${item.gender}`);
+
   }
 
 
@@ -96,7 +97,7 @@ const SearchComponent = () => {
   
           <input
             placeholder='search by product, category or collection '
-            className='outline-none border-none bg-transparent ml-3 text-sm font-thin'
+            className='outline-none border-none bg-transparent ml-3 text-sm font-semibold text-gray-800 '
             type="text"
             value={searchTerm}
             onChange={(e) => handleSearchInput(e)}
@@ -105,7 +106,7 @@ const SearchComponent = () => {
         
       </form>
       
-      <div className='dropdown absolute mt-[52px] mx-[-50px] bg-gray-100 w-[fit]'>
+      {/* <div className='dropdown absolute mt-[52px] mx-[-50px] bg-gray-100 w-[fit]'>
 
 
         {searchResults.slice(0,6).map((item) => (
@@ -115,7 +116,7 @@ const SearchComponent = () => {
             <p onClick={navigateThePage(item)} key={item.id} className='mx-4 ' >
                 {/* {console.log(item)} */}
                 
-                {item.gender} {item.color.toLowerCase()} {item.subCategory}
+                {/* {item.gender} {item.color.toLowerCase()} {item.subCategory}
                  
               </p>
            
@@ -124,7 +125,7 @@ const SearchComponent = () => {
           
         ))}
       </div>
-        
+         */} 
      
     </>
   );

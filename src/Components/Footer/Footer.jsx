@@ -8,12 +8,13 @@ import { FaApple } from "react-icons/fa";
 import SecondFooter from './SecondFooter';
 import ThirdFooter from './ThirdFooter';
 import BottomFooter from './BottomFooter';
+import '../Footer/footer.css'
 
 function Footer() {
   return (
-    <div className=' bg-black text-white px-40 py-16'>
-      <h1 className='text-3xl font-bold'>Bewakoof </h1>
-      <div className="w-full lg:grid lg:grid-cols-4 lg:gap-5 text-sm md:grid md:grid-cols-3 grid grid-cols-1">
+    <div className='footer_main_section'>
+      <h1 className='text-3xl  font-bold'>Bewakoof </h1>
+      <div className="w-full lg:grid lg:grid-cols-4 lg:gap-5 text-sm md:grid md:grid-cols-3 grid grid-cols-1 bg-yellow-500">
         <div>
           <h2 className='text-yellow-500 py-2'>CUSTOMER SERVICE</h2>
           <ul className='text-white text-sm pt-3'>
