@@ -2,3 +2,31 @@
 .footer_main_section {
     background-color: rgb(10, 10, 10);
 } */
+
+
+@media only screen and (max-width: 425px) {
+
+    /*Small smartphones [325px -> 425px]*/
+    .responsive {
+        padding: 0px 5px;
+
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    /*Big smartphones [426px -> 600px]*/
+    .responsive {
+        padding: 10px 10px;
+
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+    /*Tablets [601px -> 1200px]*/
+    .responsive {
+        padding: 0px 7px;
+
+    }
+}

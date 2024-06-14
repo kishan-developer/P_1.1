@@ -26,14 +26,14 @@ function StoreR({ item,key }) {
 
 
   return (
-    <div className='bg-gray-300 py-3 my-3 px-5'>
+    <div className='bg-gray-800 py-3 my-3 px-5'>
 
       
       
       
       {/* <p className='my-2 text-sm font-semibold'>{item.product}</p> */}
       <div className='flex gap-2 '>
-        <Rating text={item.text}  ratings={item.ratings} productIds={item.product} />
+        <Rating text={item.text} ratings={item.ratings} productIds={item.product} />
       </div>
     </div>
   )

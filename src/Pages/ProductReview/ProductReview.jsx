@@ -43,8 +43,12 @@ function ProductReview() {
     
     
     const CallingCartfunc = () => {
+        if(quantity === 0) {
+            setQuantity(1);
+            
+        }
         addToCart(productID, quantity);
-        console.log("add to cart function is calling ")
+        alert("add to cart function is calling ")
     }
 
     // get product review page data using product id and fetch data 
@@ -216,7 +220,7 @@ function ProductReview() {
     return (
         <div className=' flex flex-col w-full items-center justify-center'>
             <nav className='flex items-start py-3 w-[75%] h-12 text-lg '>All Routers </nav>
-            <div className='w-[75%] h-fit lg:flex lg:flex-row flex flex-col justify-center'>
+            <div className='w-[90%] h-fit lg:flex lg:flex-row flex flex-col justify-center'>
                 <div className='lg:w-[50%] w-full lg:flex lg:flex-row flex flex-col items-center justify-center h-fit ' >
                     <div className='w-[100px]  lg:flex lg:flex-col flex flex-row items-center justify-center gap-2'>
 
@@ -224,7 +228,7 @@ function ProductReview() {
                        
                     </div>
                     <img
-                        className='xl:w-[450px] xl:h-[562px] lg:w-[300px] lg:h-[400px] md:w-[250px] md:h-[300px] md:my-5'
+                        className='xl:w-[450px] xl:h-[562px] lg:w-[fit] lg:h-[380px] md:w-[250px] md:h-[300px] md:my-5'
                         src={mainImg === '' ? (`${reviewData.displayImage}`) :(`${mainImg}`)}
                     />
                 </div>
@@ -305,7 +309,7 @@ function ProductReview() {
 
                     <div className='w-[fit] h-[44px] flex gap-4 mt-8 '>
                         <button
-                            onClick={()=>CallingCartfunc()}
+                            onClick={()=> CallingCartfunc()}
                             className='w-[200px] h-[44px] bg-yellow-600 text-center flex justify-center py-2  text-[14px]'
                         >
                             <span className='mr-2 pt-2'>

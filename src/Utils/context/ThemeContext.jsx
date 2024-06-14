@@ -164,7 +164,7 @@ function ThemeContext(props) {
     //---------------------------------------------------------------------------------------------------------
     const addToCart = async () => {
         // console.log("addtocart is calling ")
-        // console.log(`addToCart function is colling,${quantity}, ${productID}` );
+        console.log(`addToCart function is colling,${quantity}, ${productID}` );
         // console.log("qunatity data type check ",typeof quantity);
         // console.log("product id data type check",typeof productID);
         let myHeaders = new Headers();

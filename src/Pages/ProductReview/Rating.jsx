@@ -104,6 +104,7 @@ function Rating({ ratings, productIds, text }) {
                     <label>
 
                         <textarea
+                        className="w-full"
                             value={userTextReview}
                             onChange={handleChange}
                             rows={5} // Adjust the number of rows as needed

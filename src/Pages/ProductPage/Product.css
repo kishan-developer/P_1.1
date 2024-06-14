@@ -1,34 +1,37 @@
-
-#main{
+#main {
     width: 100%;
 }
 
 #childs {
     /* max-width:1170px; */
-    min-width: 318px;
+    /* min-width: 318px; */
+
     /* width: fit-content; */
     /* margin: 0 1px; */
+    width: 100%;
     display: flex;
     justify-content: center;
     /* background-color: blue; */
     /* position: absolute; */
     /* background-color: yellow; */
 }
+
 .sidebar_product_type {
     /* max-width:292px; */
     min-width: 298px;
-   
+
     padding: 0 15px 13px;
-    
+
     /* background-color: yellow; */
 }
 
-#product_cards_section{
+#product_cards_section {
     /* width: 887px; */
     width: 70%;
     /* background-color: yellow; */
     display: block;
 }
+
 .product {
     width: auto;
     display: grid;
@@ -37,8 +40,8 @@
 
 .cards {
     /* max-width: 282px; */
-    min-width:168px;
-    max-width:fit;
+    min-width: 168px;
+    max-width: fit;
 
     max-height: 503px;
     min-height: 385px;
@@ -52,19 +55,29 @@
     min-height: 231px;
 }
 
-@media screen and (max-width:822px){
+@media screen and (max-width:822px) {
     .sidebar_product_type {
-            max-width: 400px;
-            padding: 0 15px 13px;
-            /* background-color: yellow; */
-            display: none;
-        }
+        max-width: 400px;
+        padding: 0 15px 13px;
+        /* background-color: yellow; */
+        display: none;
+    }
+
+    #product_cards_section {
+        /* width: 887px; */
+        width: 90%;
+        padding: 0px 10px;
+        /* background-color: yellow; */
+        display: block;
+    }
+
     .product {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
-    .cards{
+
+    .cards {
         max-width: 379px;
         min-width: 151px;
         max-height: 590px;
@@ -72,23 +85,33 @@
         padding: 0 8px;
         font-size: 1rem;
     }
-    
+
 }
 
 @media screen and (max-width:420px) {
-   
+
+
+    #product_cards_section {
+        /* width: 887px; */
+        width: 100%;
+        padding: 0px 5px;
+        /* background-color: yellow; */
+        display: block;
+    }
 
     .product {
         /* background-color:red; */
         margin: 0;
-        padding: 0;
+        width: 100%;
+        /* padding: 100px; */
+        background-color: blue;
         width: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
 
     .cards {
-        max-width:208px;
+        max-width: 208px;
         min-width: 121px;
         max-height: 590px;
         min-height: 336px;
@@ -97,5 +120,5 @@
     }
 
 }
-/*  */
 
+/*  */

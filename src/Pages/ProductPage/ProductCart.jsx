@@ -122,7 +122,7 @@ function ProductCart({ product, index }) {
 
                 <div id="product_info" className='px-3 cursor-pointer' >
                     <div id="brandName_favoriteIcon" className='flex items-center justify-between pt-3'>
-                        <p className='font-medium md:text-[12px] text-sm mr-1'>{product.brand}</p>
+                        <p className='font-medium md:text-[12px] sm:text-sm mr-1'>{product.brand}</p>
                         <button ref={ref} className=''>
                             <FaHeart className='w-6 h-6' onClick={addToFav} />
                         </button>
