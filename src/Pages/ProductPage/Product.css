@@ -104,7 +104,7 @@
         margin: 0;
         width: 100%;
         /* padding: 100px; */
-        background-color: blue;
+        /* background-color: blue; */
         width: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);

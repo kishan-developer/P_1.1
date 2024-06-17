@@ -55,7 +55,7 @@ const PaymentPage = () => {
         <div>
             <h1>Payment Page</h1>
             <div id="google-pay-button-container">
-                PAy
+                PAy.............
                 {/* This is where the Google Pay button will be rendered */}
             </div>
             <div>

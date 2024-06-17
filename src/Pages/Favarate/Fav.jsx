@@ -56,16 +56,13 @@ function Fav() {
   }
   
 
-
-
-
   return (
     <div className='mt-10 w-full flex flex-col items-center justify-center px-[15px] '>
       <nav className='h-15 xl:w-[1170px] lg:w-[fit] md:w-[fit] sm:w-[fit] px-10 py-2 bg-gray-300 flex items-start text-center gap-5 font-bold mb-5'>
         <button onClick={clear} className='cursor-pointer border-2 border-black py-1 px-6 rounded-xl hover:bg-red-400 hover:text-yellow-500'>Clear Wishlist</button>
         
       </nav>
-      <div className='xl:w-[1170px] w-fit flex items-center flex-wrap '>
+      <div className='xl:w-[1170px] w-full flex justify-center items-center flex-wrap '>
         {favData?.data?.items?.map((item, index) => (
           <div key={item._id}>
             <FavProductCart item={item} index={index} />

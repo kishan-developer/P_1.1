@@ -10,13 +10,13 @@ const OrderPlace = () => {
     const referenceNum = searchQuery.get("reference");
     const { productID, orderData, setOrderData, getOrderItem, userName, OrderCartItem, setOrderCartItem, cartItems, clearCartPage, getCartItem, formData, setFormData, quantity, setQuantity, size, setSize, handleOrgerPayment } = useThemeContextValue();
 
-    useEffect(() => {
-        // console.log("fun is callinng handleOrgerPayment order place page")
-        handleOrgerPayment()
-    }, [])
+    // useEffect(() => {
+    //     // console.log("fun is callinng handleOrgerPayment order place page")
+    //     handleOrgerPayment()
+    // }, [])
 
     const handleO = () => {
-        handleOrgerPayment();
+        // handleOrgerPayment();
         navigate('/order')
     }
 

@@ -11,6 +11,7 @@ import { IoCloseCircle } from "react-icons/io5";
 // import AdForm from '../../Pages/Cart/AdForm';
 // import useDeleteProduct from '../../Utils/API/useDeleteProduct';
 import OrderForm from './OrderForm';
+import AddressComponent from './AddressComponent';
 
 // const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 const CheckoutProduct = lazy(() => import('./Checkout/CheckoutProduct'));
@@ -37,18 +38,20 @@ const Cart = () => {
     const [p_total ,setP_total] = useState([]);
 
     // cartlength by array changes
-    const [formDUser , setUserFormData] = useState(null);
+    // const [formDUser , setUserFormData] = useState();
 
     // console.log("Cart component is Render");
+    const userAddress = localStorage.getItem(JSON.stringify("formD"));
+    console.log("userAddress", userAddress);
 
+    console.log("formData", formData);
 
     useEffect(() => {
         // JSON.stringify() takes a JavaScript object and transforms it into a JSON string.
         // JSON.parse() takes a JSON string and transforms it into a JavaScript object.
-        const userAddress = localStorage.getItem("formD");
-        // console.log("userAddress", userAddress);
-        // setFormData(userAddress);
-        setUserFormData(userAddress);
+        
+        setFormData(userAddress);
+        // setUserFormData(userAddress);
 
         const userForm = localStorage.getItem("login User Address")
         // console.log("...", userForm);
@@ -132,19 +135,16 @@ const Cart = () => {
         totalmap[id] = productTotaPrice;
         // console.log(totalmap);
 
-        
-
          totalValueCard = totalmap.map((id ,value) => {
             return value + value;
         })
-
-       
-
     }
 
+    const F = localStorage.getItem("formD");
+    const jsonF = JSON.parse(F);
 
-
-    // console.log("formData ...",formData)
+    console.log("jsonF", jsonF?.street)
+    // console.log("userAddress ...", userAddress)
 
     return (
         <div className='h-fit mt-10 w-full px-[15px] xl:flex xl:flex-col xl:items-center xl:justify-center lg:flex lg:flex-col lg:items-center lg:justify-center 
@@ -191,8 +191,6 @@ const Cart = () => {
                                         cartDatas={cartDatas}
                                     />
                                 </Suspense>
-
-
                             ))
                         }
                     </div>
@@ -263,13 +261,9 @@ const Cart = () => {
 
                                
                                     {/* <span onClick={toggleModal}>Add Address</span> */}
-                               
+                               <AddressComponent jsonF={jsonF} toggleModal={toggleModal}/>
 
-                                {FormData?.street === '' ? (
-                                    <span onClick={toggleModal}>Add Address</span>
-                                ) : (
-                                    <span className="text-sm"><Link to='/payment'>PROCEED TO CHECKOUT</Link></span>
-                                )}
+                                
 
                             </button>
                         </div>

@@ -12,7 +12,7 @@ function FavProductCart({ item, index }) {
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState('S');
   // add to bag data testing
-  const [resultStatus, setResultStatus]= useState(false);
+  const [resultStatus, setResultStatus] = useState(false);
   const { state, dispatch, productID, setproductID, favData, setFavData, getAllProductFav, setCartData, removeWishlistProduct, getCartItem } = useThemeContextValue();
   // const [currenId , setCurr]
 
@@ -20,34 +20,34 @@ function FavProductCart({ item, index }) {
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////
   // remove Product in Favorites (Protected Route):
-  
- 
-//////////////////////////////////////////////////////////////////////
+
+
+  //////////////////////////////////////////////////////////////////////
   function removeFromFavorite() {
     // console.log("productID ", productID)
     removeWishlistProduct();
     // console.log("+++++")
-    getAllProductFav(); 
+    getAllProductFav();
     // console.log("-------")
   }
 
-  
-////////////////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////////////////////////
   const handleClick = () => {
     setproductID(item.products._id);
     removeFromFavorite(productID);
   }
 
 
-  
 
-////////////////////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////////////////////////
   // add to cart wishlist data one by one
   const handleAddtoCart = (productID) => {
     setproductID(productID);
     // console.log("fn is calling haldeaddtocart")
     addToCart(productID);
-    
+
   }
 
 
@@ -74,13 +74,13 @@ function FavProductCart({ item, index }) {
 
     try {
       // console.log("11")
-      const response = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${productID}`,requestOptions);
+      const response = await fetch(`https://academics.newtonschool.co/api/v1/ecommerce/cart/${productID}`, requestOptions);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const result = await response.json();
       // console.log(result.data);
-      if(result.status === "success"){
+      if (result.status === "success") {
         setResultStatus(true);
         getCartItem();
         // toast(result.message);
@@ -96,15 +96,15 @@ function FavProductCart({ item, index }) {
   //   // removeWishlistProduct(productID);
   // }, [addToCart])
 
-  
+
   return (
     <>
 
       {item?.products ? (
-        <div key={index + item._id} className='cards  w-[276.5px] px-[0.8px]  m-2  text-sm'>
+        <div key={index + item._id} className='cards w-[276.5px] px-[0.8px] m-2 text-sm'>
           <div className='w-auto relative'>
-            <img className='w-[274.9px] h-[fit]  ' src={item.products.displayImage} />
-            <button onClick={handleClick} className=' border-2 border-gray-700 bg-gray-300 rounded-full p-1 absolute  top-[10px] left-[240px] text-sm text-gray-700'>
+            <img className='w-[274.9px] h-[fit]' src={item.products.displayImage} />
+            <button onClick={handleClick} className=' border-2 border-gray-700 bg-gray-300 rounded-full p-1 absolute  top-[10px] left-[80%] text-sm text-gray-700'>
               <IoMdClose />
             </button>
           </div>
@@ -116,27 +116,23 @@ function FavProductCart({ item, index }) {
               <span className='text-green-400 ml-2 text-sm font-bold '>20% OFF</span>
             </p>
           </div>
-          <button
-
-            className='text-white bg-blue-900 font-bold w-full text-center flex justify-center py-2 border-2 border-gray-300 text-[12px]'>
-            <span className='mr-2 pt-1'>
+          <button className='text-white bg-gray-700 font-bold w-full text-center flex justify-center px-3  border-2 border-gray-300 text-[12px]'>
+            <span className='mr-2 pt-3'>
               <BsBagPlusFill />
             </span>
 
-            {resultStatus ? (
-              <span onClick={handleClick}><Link to='/cart'>Go to Bag</Link></span>
-            ) : (
-              <span onClick={() => handleAddtoCart(item.products._id)}>ADD TO BAG</span>
-            )
-
+            {resultStatus ?
+              (
+                <span className="w-full h-full py-2" onClick={handleClick}><Link to='/cart'>Go to Bag</Link></span>
+              ) : (
+                <span className="w-full h-full py-2" onClick={() => handleAddtoCart(item.products._id)}>ADD TO BAG</span>
+              )
             }
-
           </button>
         </div>
-    )
-    : 
-    (<p>Add product in wishlist</p>)}
-     
+      )
+        :
+        (<p>Add product in wishlist</p>)}
 
       <ToastContainer />
     </>

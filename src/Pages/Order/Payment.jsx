@@ -6,6 +6,7 @@ import PaymentProductCart from './PaymentProductCart';
 import { TbFileArrowRight } from "react-icons/tb";
 import axios from 'axios';
 import PaymentMethod from './PaymentMethod';
+import CartPaymentPage from './CartPaymentPage';
 
 const Payment = () => {
 
@@ -28,7 +29,7 @@ const Payment = () => {
     // if(useDetails){
     //     setFormData(useDetails);
     // }
-    // console.log("user Details localStorage ", useDetails.street);
+    console.log("user Details localStorage ", useDetails?.street);
 
     // console.log("User Details formData state", formData);
 
@@ -69,10 +70,11 @@ const Payment = () => {
             alert("Please Add some product")
             navigate('/men');
         } else {
+            // navigate('/paymentMethod');
             addOrderItem();
-            clearCartPage()
-            getCartItem()
-            alert(`User paid successfully: ${totalValue}`);
+            // clearCartPage()
+            // getCartItem()
+            // alert(`User paid successfully: ${totalValue}`);
             navigate('/paymentsuccess')
         }
     }
@@ -80,47 +82,112 @@ const Payment = () => {
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // buy now api calling 
-    const addOrderItem = async () => {
-        // console.log("buy api calling")
-        // event.preventDefault();
-        const pID = localStorage.getItem("payment_page_product_id")
-        // console.log(pID);
-        const qut = localStorage.getItem("PaymentPage_Product_quantity");
-        const token = localStorage.getItem("token"); // Replace with your JWT token
-        // console.log("00", token);
+    // const addOrderItem = async () => {
 
+    //     console.log("buy api calling")
+    //     // event.preventDefault();
+    //     const pID = localStorage.getItem("payment_page_product_id");
+    //     console.log(pID);
+    //     const qty = localStorage.getItem("PaymentPage_Product_quantity");
+    //     const token = localStorage.getItem("token"); // Replace with your JWT token
+    //     // console.log("00", token);
+
+    //     const url = "https://academics.newtonschool.co/api/v1/ecommerce/order";
+
+    //     const myHeaders = new Headers();
+    //     // myHeaders.append("projectId", "rcetbaqftf5m");
+    //     // myHeaders.append("Content-Type", "application/json");
+    //     // myHeaders.append("Authorization", `Bearer ${token}`);
+
+    //     myHeaders.append("projectId", "rcetbaqftf5m");
+    //     // console.log("Headers after projectId:", myHeaders);
+
+    //     myHeaders.append("Content-Type", "application/json");
+    //     // console.log("Headers after Content-Type:", myHeaders);
+
+    //     myHeaders.append("Authorization", `Bearer ${token}`);
+    //     // console.log("Headers after Authorization:", myHeaders);
+
+    //     const raw = JSON.stringify({
+    //         "productId": pID,
+    //         "quantity": qty,
+    //         "addressType": "HOME",
+    //         "address": {
+    //             "street": useDetails?.street,
+    //             "city": useDetails?.city,
+    //             "state": useDetails?.state,
+    //             "country": useDetails?.country,
+    //             "zipCode": useDetails?.zipCode
+    //         }
+    //     });
+        
+
+    //     const requestOptions = {
+    //         method: "POST",
+    //         headers: myHeaders,
+    //         body: raw,
+    //         redirect: "follow"
+    //     };
+
+    //     try {
+    //         const response = await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order", requestOptions);
+    //         const result = await response.json();
+    //         console.log(result);
+    //         console.log("buy now api", result.status); // Handle response data as neede
+    //     } catch (error) {
+    //         console.error('Error:', error.message);
+    //     }
+    // }
+
+    const addOrderItem = async () => {
+        console.log("Calling buy API");
+
+        // Retrieve necessary data from localStorage
+        const pID = localStorage.getItem("payment_page_product_id");
+        const qty = localStorage.getItem("PaymentPage_Product_quantity");
+        const token = localStorage.getItem("token"); // Replace with your JWT token
+
+        console.log("Product ID:", pID);
+        console.log("Quantity:", qty);
+
+        // Define the API URL
         const url = "https://academics.newtonschool.co/api/v1/ecommerce/order";
 
-        const myHeaders = new Headers();
-        // myHeaders.append("projectId", "rcetbaqftf5m");
-        // myHeaders.append("Content-Type", "application/json");
-        // myHeaders.append("Authorization", `Bearer ${token}`);
+        // Prepare headers
+        const myHeaders = new Headers({
+            "projectId": "rcetbaqftf5m",
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        });
 
-        myHeaders.append("projectId", "rcetbaqftf5m");
-        // console.log("Headers after projectId:", myHeaders);
-
-        myHeaders.append("Content-Type", "application/json");
-        // console.log("Headers after Content-Type:", myHeaders);
-
-        myHeaders.append("Authorization", `Bearer ${token}`);
-        // console.log("Headers after Authorization:", myHeaders);
-
+       
+        // const raw = JSON.stringify({
+        //     productId: pID,
+        //     quantity: qty,
+        //     addressType: "HOME",
+        //     address: {
+        //         street: useDetails?.street,
+        //         city: useDetails?.city,
+        //         state: useDetails?.state,
+        //         country: useDetails?.country,
+        //         zipCode: useDetails?.zipCode
+        //     }
+        // });
 
         const raw = JSON.stringify({
             "productId": pID,
-            "quantity": qut,
+            "quantity": 2,
             "addressType": "HOME",
             "address": {
-                "street": useDetails?.street,
-                "city": useDetails?.city,
-                "state": useDetails?.state,
-                "country": useDetails?.country,
-                "zipCode": useDetails?.zipCode
+                "street": "123 Main St",
+                "city": "Anytown",
+                "state": "CA",
+                "country": "USA",
+                "zipCode": "12345"
             }
         });
-        // console.log("raw", raw)
 
-
+        // Define request options
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
@@ -128,47 +195,55 @@ const Payment = () => {
             redirect: "follow"
         };
 
-        // console.log("requestoption", requestOptions);
-
         try {
+            // Make the API request
             const response = await fetch(url, requestOptions);
+            if (!response.ok) {
+                const errorDetails = await response.text();
+                console.error('HTTP error:', response.status, response.statusText, errorDetails);
+                return;
+            }
             const result = await response.json();
-            console.log("buy now api", result.status); // Handle response data as neede
+
+            // Handle the response
+            console.log(result);
+            console.log("Buy Now API Response Status:", result.status);
         } catch (error) {
+            // Handle errors
             console.error('Error:', error.message);
         }
     }
-
-
-    // pass the total amount in backend using url 
-    // const handlecheckoutorder = (totalValue) => {
-    //     // console.log("handlecheckoutorder totalValue", totalValue);
-    //     checkoutHandler(totalValue);
-    //     // window.location.href = "http://localhost:5173/paymentsuccess?reference=pay_NynRrvhnwDr9qm";
-    //     // // Step 2: Once the product page is loaded, call the product API function
-    //     // window.onload = function () {
-    //     //     // Call your product API function here
-    //     //     handleOrgerPayment();
-    //     // };
-    // }
-
-    // here i want to navigate the order success payment then product add inside the order list
-    // Step 1: Navigate to the product page using Navigator object
-    // Replace 'product-page-url' with the actual URL of the product page
-
-
 
 
     const RazorpayDisplay = async (totalValue) => {
         console.log("chekoutHandler TotalValue", totalValue);
         const userEmail = localStorage.getItem("login User Email.......");
         const userName = localStorage.getItem("login User Name.......");
+        const ProductIds = localStorage.getItem("payment_page_product_id");
 
-        // this api get the key
-        const { data: { key } } = await axios.get("http://localhost:4000/api/getkey")
+        const myHeaders = {
+            amount: totalValue,
+            currency: "INR",
+            receipt: ProductIds,
+        };
+        
+        const response = await axios.post("https://project-server-lq2e.onrender.com/order", {
+            amount: totalValue,
+            currency: "INR",
+            receipt: ProductIds,
+        });
+
+        console.log("Order response : ", response.data.id);
+
+
+        const id = "rzp_test_SJWXgAHBZeNPoG";
+
+        const key = await axios.post(`https://api.razorpay.com/v2/preferences?key_id=${id}`);
+        console.log("key response", key);
+
 
         // hit the checkout url
-        const { data: { order } } = await axios.post("http://localhost:4000/api/checkout", {
+        const { data: { order } } = await axios.post("https://project-server-lq2e.onrender.com/checkout", {
             totalValue
         })
         // console.log("Order Data Payment page",order);
@@ -182,7 +257,9 @@ const Payment = () => {
             description: "Test Transaction",
             image: "https://example.com/your_logo",
             order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-            callback_url: "http://localhost:4000/api/paymentVarification",
+
+            callback_url: "https://project-server-lq2e.onrender.com/api/paymentVarification",
+
             prefill: {
                 name: userName,
                 email: userEmail,
@@ -202,22 +279,21 @@ const Payment = () => {
     };
 
 
-
-
     return (
         <div className='xl:flex-row lg:flex-row flex flex-col gap-5 w-full h-fit xl:px-[15rem] lg:px-[4rem] md:px-[4rem] sm:px-[4rem] px-[1rem]'>
             <div className='xl:w-2/3 lg:w-2/3 w-full my-10'>
                 <h2 className='font-bold text-md py-5 '>Choose your payment method</h2>
                 <div className='xl:h-[400px] lg:h-[300px] h-fit border-[1px] border-black p-3'>
-                    <PaymentMethod amount={totalValue} handleOrgerPayment={handleOrgerPayment} />
+                    {/* <PaymentMethod amount={totalValue} handleOrgerPayment={handleOrgerPayment} /> */}
                     {/* <PaymentPage/> */}
-                    <button
+                    {/* <button></button> */}
+                    {/* <button
                         onClick={() => RazorpayDisplay(totalValue)}
                         className="bg-blue-300 rounded-md px-5 py-2 mt-5 font-semibold cursor-pointer "
                     >
                         Razarpay
-                    </button>
-                   
+                    </button> */}
+                    <CartPaymentPage handleOrgerPayment={handleOrgerPayment}  />
                 </div>
             </div>
 
@@ -240,10 +316,8 @@ const Payment = () => {
                             <div key={item._id}>
                                 <PaymentProductCart item={item} OrderCartItem={OrderCartItem} />
                             </div>
-
                         ))
                     }
-
 
                     <div className=' h-[fit] pt-3 pb-2 px-1'>
                         <h2 className='font-bold text-black py-1'>Price Summary</h2>

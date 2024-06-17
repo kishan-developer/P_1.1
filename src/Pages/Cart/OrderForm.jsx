@@ -12,9 +12,11 @@ const OrderForm = ({ setOrderStatus, model, setModel }) => {
 
     const handleFormSubmit =() => {
         // console.log("orderForm Page", formData)
+        window.location.reload(false);
         localStorage.setItem("formD", JSON.stringify(formData));
-        alert("form subit orderForm page")
+        // alert("form subit orderForm page")
         // console.log("22222",typeof formData);
+        
     }
 
     const handleChange = (event) => {
@@ -25,7 +27,7 @@ const OrderForm = ({ setOrderStatus, model, setModel }) => {
     }
 
     return (
-        <form onSubmit={handleFormSubmit} className='rounded-lg py-5 flex flex-col xl:w-[500px] lg:w-[450px] md:w-[400px] sm:w-[200px] w-[100px]'>
+        <form onSubmit={handleFormSubmit} className='rounded-lg py-5 flex flex-col xl:w-[500px] lg:w-[450px] md:w-[400px] sm:w-[200px] w-[100%]'>
            <h2 className='font-semibold text-lg py-3 bg-gray-400 rounded-lg px-3 mb-3'>Add User Details</h2>
             <label className=' w-[full] mb-2 py-2 px-3 border-2 border-gray-400 '>
                 Street:

@@ -281,7 +281,7 @@ function ThemeContext(props) {
             if(result.status==="success"){
                 getCartItem();
             }
-            alert(result.message);
+            // alert(result.message);
         } catch (error) {
             console.log(error)
         }
@@ -420,7 +420,7 @@ function ThemeContext(props) {
 
             const response = await fetch("https://academics.newtonschool.co/api/v1/ecommerce/order/",requestOptions);
             const result = await response.json();
-            // console.log("get order ", result.data);
+            console.log("get order ", result.data);
             setOrderData(result.data);
         } catch (error) {
             console.log(error);
@@ -509,7 +509,7 @@ function ThemeContext(props) {
             addOrderItem();
             clearCartPage()
             getCartItem()
-            alert(`User paid successfully: ${totalValue}`);
+            // alert(`User paid successfully: ${totalValue}`);
             
         }
     }

@@ -1,5 +1,6 @@
 import React, { useState, lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom';
+import CartPaymentPage from '../Pages/Order/CartPaymentPage';
 
 // const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
@@ -91,6 +92,7 @@ function AllRoutes() {
                         {/* <Route path="/admin" element={<Admin />} /> */}
                         <Route path='/fav' element={<Fav />} />
                         <Route path='/cart' element={<Cart />} />
+                        <Route path='/paymentMethod' element={<CartPaymentPage/>} />
                         <Route path="/checkoutpage" element={<CheckoutAddress />} />
                         <Route path="/order" element={<Order />} />
                         <Route path="/paymentsuccess" element={<OrderPlace />} />
