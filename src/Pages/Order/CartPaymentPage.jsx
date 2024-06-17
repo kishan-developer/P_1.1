@@ -12,7 +12,7 @@ function CartPaymentPage({ handleOrgerPayment }) {
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length === 0) {
             // Submit the form
-            alert('Payment Submitted');
+            alert('Payment Successfull');
             handleOrgerPayment();
         } else {
             setErrors(validationErrors);
@@ -35,6 +35,8 @@ function CartPaymentPage({ handleOrgerPayment }) {
 
 
   return (
+    <>
+    <h2 className="font-bold text-center text-1xl">Visa Card</h2>
       <form className="payment-form" onSubmit={handleSubmit}>
           <div>
               <label htmlFor="cardNumber">Card Number</label>
@@ -77,6 +79,7 @@ function CartPaymentPage({ handleOrgerPayment }) {
           </div>
           <button type="submit">Submit Payment</button>
       </form>
+    </>
   )
 }
 

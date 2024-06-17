@@ -19,6 +19,7 @@
   font-size: 1em;
   width: 100%;
   box-sizing: border-box;
+  letter-spacing:3px;
 }
 .payment-form button {
   padding: 1em;
