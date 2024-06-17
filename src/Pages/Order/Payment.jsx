@@ -72,8 +72,8 @@ const Payment = () => {
         } else {
             // navigate('/paymentMethod');
             addOrderItem();
-            // clearCartPage()
-            // getCartItem()
+            clearCartPage()
+            getCartItem()
             // alert(`User paid successfully: ${totalValue}`);
             navigate('/paymentsuccess')
         }
